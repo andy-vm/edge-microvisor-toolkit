@@ -1,6 +1,9 @@
 {
     "packages": [
         "systemd-boot",
+        "grub2",
+        "grub2-efi-binary",
+        "grubby",
         "systemd-ukify",
         "ca-certificates",
         "cronie-anacron",
