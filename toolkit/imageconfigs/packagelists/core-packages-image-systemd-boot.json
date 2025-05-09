@@ -4,6 +4,7 @@
         "grub2",
         "grub2-efi-binary",
         "grubby",
+        "grub2-tools",
         "systemd-ukify",
         "ca-certificates",
         "cronie-anacron",
