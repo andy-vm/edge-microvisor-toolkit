@@ -7,7 +7,7 @@
 Summary:        GRand Unified Bootloader
 Name:           grub2
 Version:        2.06
-Release:        23%{?dist}
+Release:        24%{?dist}
 License:        GPLv3+
 Vendor:         Intel Corporation
 Distribution:   Edge Microvisor Toolkit
@@ -274,6 +274,7 @@ pushd build-for-efi
     --prefix=%{_prefix} \
     --sbindir=/sbin \
     --sysconfdir=%{_sysconfdir} \
+    --enable-blscfg \
     --disable-werror \
     --disable-efiemu \
     --with-grubdir=grub2 \
