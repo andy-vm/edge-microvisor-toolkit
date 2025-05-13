@@ -367,6 +367,7 @@ cp $GRUB_PXE_MODULE_SOURCE $EFI_BOOT_DIR/$GRUB_PXE_MODULE_NAME
 /sbin/grub2-reboot
 /sbin/grub2-set-default
 /sbin/grub2-sparc64-setup
+/sbin/grub2-switch-to-blscfg
 %{_bindir}/grub2-fstest
 %{_bindir}/grub2-glue-efi
 %{_bindir}/grub2-kbdcomp
