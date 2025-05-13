@@ -4,7 +4,7 @@
 Summary: Industry-standard container runtime
 Name: containerd
 Version: 1.7.13
-Release: 7%{?dist}
+Release: 8%{?dist}
 License: ASL 2.0
 Group: Tools/Container
 URL: https://www.containerd.io

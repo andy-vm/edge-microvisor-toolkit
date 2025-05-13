@@ -5,5 +5,8 @@ version = 2
       [plugins."io.containerd.grpc.v1.cri".containerd.runtimes]
         [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
           runtime_type = "io.containerd.runc.v2"
+          privileged_without_host_devices = false
           [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
             SystemdCgroup = true
+   [plugins."io.containerd.grpc.v1.cri".registry]
+     config_path = "/etc/containerd/certs.d:/etc/docker/certs.d"
