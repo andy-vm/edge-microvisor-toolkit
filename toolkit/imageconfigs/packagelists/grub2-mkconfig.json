@@ -1,6 +1,5 @@
 {
     "packages": [
-        "grubby",
         "grub2-tools",
         "grub2"
     ],
