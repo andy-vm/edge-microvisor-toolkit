@@ -250,6 +250,7 @@ export CFLAGS
     --prefix=%{_prefix} \
     --sbindir=/sbin \
     --sysconfdir=%{_sysconfdir} \
+    --enable-blscfg \
     --disable-werror \
     --disable-efiemu \
     --with-grubdir=grub2 \
