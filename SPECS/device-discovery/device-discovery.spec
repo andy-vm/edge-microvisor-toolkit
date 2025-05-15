@@ -30,6 +30,7 @@ The Device Discovery Agent for Edge Node in order to retrieve the specific confi
 
 %build
 cd hook-os/device_discovery
+go mod vendor
 CGO_ENABLED=0 go build -buildmode=pie -mod=vendor -trimpath -ldflags '-s -w -extldflags "-static"' -o device-discovery
 
 %install
