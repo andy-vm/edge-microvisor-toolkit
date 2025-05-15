@@ -1,7 +1,7 @@
 {
   "Signatures": {
     "tink-worker-0.10.0.tar.gz": "648137225766605fd637dd1b36d9d8b439dfa18a3351f6806f0ec8107e8136af",
-    "tink-worker.service": "56da8a32f96ecc2575d12e145ebdd20e525d3b1749ab282ac4fcc8a8e263f7f2",
+    "tink-worker.service": "a0dfba2bd2d60ece6543390bda4afb784073813532ef9ef7fbc2239a45965b2c",
     "vendor.tar.gz": "0e0bcfeacdd304a3e74c69eefbb1f01fef9ff7b4f376caf9ed166fba9499a5ff",
     "Intel.crt": "5cbf96cd53e27d63f23e7cc44d55909ed5ac8dd1b082a08a80d0d941d7d5b26b",
     "tink-worker.patch": "e69b277139ef330f0c17777142f375e5268bceaf3b05e17e5ce2add3cf920cb3"
