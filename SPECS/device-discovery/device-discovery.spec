@@ -16,6 +16,7 @@ Source2:        vendor.tar.gz
 
 BuildRequires:  golang >= 1.23
 BuildRequires:  systemd-rpm-macros
+Requires: curl
 
 %global debug_package   %{nil}
 
@@ -33,8 +34,6 @@ CGO_ENABLED=0 go build -buildmode=pie -mod=vendor -trimpath -ldflags '-s -w -ext
 
 %install
 # command
-pwd
-ls
 install -d -m 0755 %{buildroot}%{_bindir}/device-discovery 
 install -m 0755 ./hook-os/device_discovery/device-discovery %{buildroot}%{_bindir}/device-discovery/device-discovery
 install -m 0755 ./hook-os/device_discovery/client-auth.sh %{buildroot}%{_bindir}/device-discovery/client-auth.sh
