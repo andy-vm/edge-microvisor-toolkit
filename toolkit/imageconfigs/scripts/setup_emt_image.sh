@@ -31,3 +31,4 @@ rm -rf /boot/initramfs-*.img
 rm -rf /boot/vmlinuz*
 
 systemd-hwdb update
+[ -f /etc/udev/hwdb.bin ] && cp /etc/udev/hwdb.bin /usr/lib/udev/hwdb.bin

@@ -102,7 +102,7 @@
                 }
             ],
             "KernelCommandLine": {
-                "ExtraCommandLine": "quiet splash nohalt cpufreq.off=1 hpet=disable clocksource=tsc tsc=reliable mce=off nmi_watchdog=0 nosoftlockup sysctl.vm.overcommit_memory=1 sysctl.kernel.panic=10 sysctl.kernel.panic_on_oops=1 sysctl.fs.inotify.max_user_instances=8192 rd.shell=0 rd.clock=utc rd.emergency=reboot i915.force_probe=*",
+                "ExtraCommandLine": "quiet splash nohalt hpet=disable clocksource=tsc tsc=reliable sysctl.vm.overcommit_memory=1 sysctl.kernel.panic=10 sysctl.kernel.panic_on_oops=1 sysctl.fs.inotify.max_user_instances=8192 rd.shell=0 rd.timeout=5 rd.clock=utc rd.emergency=reboot i915.force_probe=*",
                 "SELinux": "permissive"
             },
             "Hostname": "EdgeMicrovisorToolkit",
