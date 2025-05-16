@@ -29,13 +29,15 @@ The Device Discovery Agent for Edge Node in order to retrieve the specific confi
 %build
 cd hook-os/device_discovery
 tar -xzvf %{SOURCE2} -C .
-CGO_ENABLED=0 go build -buildmode=pie -mod=vendor -trimpath -ldflags '-s -w -extldflags "-static"' -o device-discovery
+CGO_ENABLED=0 go build -buildmode=pie -mod=vendor -trimpath -ldflags '-s -w -extldflags "-static"' -gcflags=all="-l -B" -o device-discovery
 
 %install
 # command
+pwd
+ls
 install -d -m 0755 %{buildroot}%{_bindir}/device-discovery 
-install -m 0755 ./device-discovery %{buildroot}%{_bindir}/device-discovery/device-discovery
-install -m 0755 ./client-auth.sh %{buildroot}%{_bindir}/device-discovery/client-auth.sh
+install -m 0755 ./hook-os/device_discovery/device-discovery %{buildroot}%{_bindir}/device-discovery/device-discovery
+install -m 0755 ./hook-os/device_discovery/client-auth.sh %{buildroot}%{_bindir}/device-discovery/client-auth.sh
 
 # systemd units
 mkdir -p %{buildroot}%{_unitdir}
