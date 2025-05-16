@@ -34,8 +34,8 @@ CGO_ENABLED=0 go build -buildmode=pie -mod=vendor -trimpath -ldflags '-s -w -ext
 %install
 # command
 install -d -m 0755 %{buildroot}%{_bindir}/device-discovery 
-install -m 0755 device-discovery %{buildroot}%{_bindir}/device-discovery/device-discovery
-install -m 0755 client-auth.sh %{buildroot}%{_bindir}/device-discovery/client-auth.sh
+install -m 0755 ./device-discovery %{buildroot}%{_bindir}/device-discovery/device-discovery
+install -m 0755 ./client-auth.sh %{buildroot}%{_bindir}/device-discovery/client-auth.sh
 
 # systemd units
 mkdir -p %{buildroot}%{_unitdir}
