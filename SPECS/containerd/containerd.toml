@@ -24,5 +24,3 @@ version = 2
           privileged_without_host_devices = false
           [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
             SystemdCgroup = true
-   [plugins."io.containerd.grpc.v1.cri".registry]
-     config_path = "/etc/containerd/certs.d:/etc/docker/certs.d"
