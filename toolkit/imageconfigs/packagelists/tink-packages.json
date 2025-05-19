@@ -6,6 +6,7 @@
         "caddy",
         "rng-tools",
         "tink-worker",
+        "device-discovery",
         "containerd"
     ]
 }
