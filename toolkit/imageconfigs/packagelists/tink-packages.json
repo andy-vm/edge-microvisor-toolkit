@@ -1,12 +1,12 @@
 {
     "packages": [
-        "dracut-tmpfsroot",
-        "tar",
-        "fluent-bit",
         "caddy",
-        "rng-tools",
-        "tink-worker",
+        "containerd",
         "device-discovery",
-        "containerd"
+        "dracut-tmpfsroot",
+        "fluent-bit",
+        "rng-tools",
+        "tar",
+        "tink-worker"
     ]
 }
