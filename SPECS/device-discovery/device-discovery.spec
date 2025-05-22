@@ -3,13 +3,14 @@
 Summary:        Device Discovery Agent for Edge Node
 Name:           device-discovery
 Version:        1.17.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Distribution:   Tiber Microvisor
 Vendor:         Intel Corporation
 License:        Apache-2.0
 URL:            https://tinkerbell.org
 Source0:        https://%{infraonboarding_gitpath}/archive/refs/tags/tinker-actions/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1:        device-discovery.service
+Source2:        device-discovery-%{version}-vendor.tar.gz
 
 %{?systemd_requires}
 
@@ -27,6 +28,7 @@ The Device Discovery Agent for Edge Node in order to retrieve the specific confi
 
 %build
 cd hook-os/device_discovery
+tar -xzvf %{SOURCE2} -C .
 CGO_ENABLED=0 go build -buildmode=pie -mod=vendor -trimpath -ldflags '-extldflags "-static"' -gcflags=all="-l -B" -o device-discovery
 
 %install
