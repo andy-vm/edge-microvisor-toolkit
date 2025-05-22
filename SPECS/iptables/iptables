@@ -4,8 +4,9 @@
 
 # Insert connection-tracking modules
 # (not needed if built into the kernel)
-modprobe nf_conntrack
-modprobe xt_LOG
+modprobe nf_conntrack &
+modprobe xt_LOG &
+wait
 
 # Enable broadcast echo Protection
 echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
