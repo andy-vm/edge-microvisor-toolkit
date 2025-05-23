@@ -1,14 +1,15 @@
 %global infraonboarding_gitpath github.com/open-edge-platform/infra-onboarding
-
+# https://github.com/open-edge-platform/infra-onboarding/archive/refs/tags/emt-uos.tar.gz
+# https://%{infraonboarding_gitpath}/archive/refs/tags/tinker-actions/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Summary:        Device Discovery Agent for Edge Node
 Name:           device-discovery
 Version:        1.17.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Distribution:   Tiber Microvisor
 Vendor:         Intel Corporation
 License:        Apache-2.0
 URL:            https://tinkerbell.org
-Source0:        https://%{infraonboarding_gitpath}/archive/refs/tags/tinker-actions/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://%{infraonboarding_gitpath}/archive/refs/tags/emt-uos.tar.gz#/%{name}-%{version}-emt-uos.tar.gz
 Source1:        device-discovery.service
 Source2:        device-discovery-%{version}-vendor.tar.gz
 
@@ -24,7 +25,8 @@ The Device Discovery Agent for Edge Node in order to retrieve the specific confi
 
 
 %prep
-%setup -q -n infra-onboarding-tinker-actions-%{version}
+%setup -q -n infra-onboarding-emt-uos
+#%setup -q -n infra-onboarding-tinker-actions-%{version}
 
 %build
 cd hook-os/device_discovery
