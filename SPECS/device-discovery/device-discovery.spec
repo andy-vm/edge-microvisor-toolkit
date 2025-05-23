@@ -4,7 +4,7 @@
 Summary:        Device Discovery Agent for Edge Node
 Name:           device-discovery
 Version:        1.17.2
-Release:        3%{?dist}
+Release:        4%{?dist}
 Distribution:   Tiber Microvisor
 Vendor:         Intel Corporation
 License:        Apache-2.0
@@ -18,7 +18,7 @@ Source2:        device-discovery-%{version}-vendor.tar.gz
 BuildRequires:  golang >= 1.23
 BuildRequires:  systemd-rpm-macros
 Requires: curl
-
+Requires: dmidecode
 
 %description
 The Device Discovery Agent for Edge Node in order to retrieve the specific configuration to start for the current/correct machine.
