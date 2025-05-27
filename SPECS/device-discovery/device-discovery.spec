@@ -4,7 +4,7 @@
 Summary:        Device Discovery Agent for Edge Node
 Name:           device-discovery
 Version:        1.17.2
-Release:        4%{?dist}
+Release:        5%{?dist}
 Distribution:   Tiber Microvisor
 Vendor:         Intel Corporation
 License:        Apache-2.0
