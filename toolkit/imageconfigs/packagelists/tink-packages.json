@@ -1,5 +1,11 @@
 {
     "packages": [
+        "cryptsetup",
+        "efibootmgr",
+        "gawk",
+        "lvm2",
+        "net-tools",
+        "parted",
         "caddy",
         "containerd",
         "device-discovery",
