@@ -6,7 +6,7 @@
 Summary:        In-memory Operating System Installation Environment for Executing Tinkerbell Workflows
 Name:           tink-worker
 Version:        0.10.0
-Release:        14%{?dist}
+Release:        15%{?dist}
 Distribution:   Tiber Microvisor
 Vendor:         Intel Corporation
 License:        Apache-2.0
