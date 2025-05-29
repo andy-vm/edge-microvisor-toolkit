@@ -8,7 +8,7 @@ Release:        5%{?dist}
 Distribution:   Tiber Microvisor
 Vendor:         Intel Corporation
 License:        Apache-2.0
-URL:            https://tinkerbell.org
+URL:            https://github.com/open-edge-platform/infra-onboarding/tree/main/hook-os/device_discovery
 Source0:        https://%{infraonboarding_gitpath}/archive/refs/tags/emt-uos.tar.gz#/%{name}-%{version}-emt-uos.tar.gz
 Source1:        device-discovery.service
 Source2:        device-discovery-%{version}-vendor.tar.gz
