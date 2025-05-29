@@ -1,7 +1,7 @@
 Summary:        Linux kernel packet control tool
 Name:           iptables
 Version:        1.8.10
-Release:        4%{?dist}
+Release:        5%{?dist}
 License:        GPLv2+
 Vendor:         Microsoft Corporation
 Distribution:   Azure Linux
@@ -137,6 +137,9 @@ fi
 %{_mandir}/man3/*
 
 %changelog
+* Thu May 29 2025 Andy <andy.peng@intel.com> - 1.8.10-5
+- Update iptables systemd service for boot time.
+
 * Thu Jan 16 2025 Dallas Delaney <dadelan@microsoft.com> - 1.8.10-4
 - Add back kernel modules that were removed by enabling nftables
 

@@ -1,10 +1,13 @@
 [Unit]
 Description=Load Iptables Rules
 ConditionFileIsExecutable=/etc/systemd/scripts/iptables
-After=network.target
+DefaultDependencies=no
+Before=network.target
 
 [Service]
-Type=forking
+Type=oneshot
+ExecStartPre=/sbin/modprobe nf_conntrack
+ExecStartPre=/sbin/modprobe xt_LOG
 ExecStart=/etc/systemd/scripts/iptables
 ExecStop=/etc/systemd/scripts/iptables.stop
 TimeoutSec=0
