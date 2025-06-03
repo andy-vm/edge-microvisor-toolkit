@@ -4,6 +4,6 @@
     "tink-worker.service": "4539d667efc3daa69e1edb96fa73f7e3d30265b9f7680d57c97b0144e7ea196c",
     "tink-worker-0.10.0-vendor.tar.gz": "0e0bcfeacdd304a3e74c69eefbb1f01fef9ff7b4f376caf9ed166fba9499a5ff",
     "Intel.crt": "5cbf96cd53e27d63f23e7cc44d55909ed5ac8dd1b082a08a80d0d941d7d5b26b",
-    "tink-worker.patch": "6f282c89a76152f1c31e8bc686c6f31190e4e8b73bb3cbc2626a72f7ef5e1395"
+    "tink-worker.patch": "bfcd71111a146af8c12341c565745047496456f2776c7950e2722cfb0e32a144"
   }
 }

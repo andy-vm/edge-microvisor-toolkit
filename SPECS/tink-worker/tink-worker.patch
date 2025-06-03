@@ -109,10 +109,10 @@ index 8dff15a38..2576dfe06 100644
  	}
 diff --git a/cmd/tink-worker/worker/containerd.go b/cmd/tink-worker/worker/containerd.go
 new file mode 100644
-index 000000000..a6448b727
+index 000000000..42db27013
 --- /dev/null
 +++ b/cmd/tink-worker/worker/containerd.go
-@@ -0,0 +1,605 @@
+@@ -0,0 +1,607 @@
 +package worker
 +
 +import (
@@ -249,6 +249,8 @@ index 000000000..a6448b727
 +	}
 +	// Create the container specification
 +	opts := []oci.SpecOpts{
++		oci.WithDefaultSpec(),
++		oci.WithDefaultUnixDevices,
 +		oci.WithImageConfig(image),
 +		oci.WithEnv(action.GetEnvironment()),
 +		oci.WithMounts(mounts),
