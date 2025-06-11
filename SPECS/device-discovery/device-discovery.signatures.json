@@ -1,6 +1,6 @@
 {
   "Signatures": {
-    "device-discovery-1.17.2-emt-uos.tar.gz": "658de2cbc2da7a4297dcbf021221f5094618afd7ffa0a190082329470ece91c1",
+    "device-discovery-1.17.2-emt-uos.tar.gz": "0ba45e61eab51fb06cee135fa3e0bd1c7ff54002aad4cf503469182c5500286b",
     "device-discovery-1.17.2-vendor.tar.gz": "997e40026d04be283d65dbe202a5ffe23b49cb42311a769b2910d4a2a7919a09",
     "device-discovery.service": "ddf6a09482470231124d5dfd1375ab7b7a57c83e3e7a98a11fd6957ff2e5df96"
   }
