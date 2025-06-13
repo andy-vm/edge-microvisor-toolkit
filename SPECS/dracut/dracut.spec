@@ -345,6 +345,9 @@ ln -srv %{buildroot}%{_bindir}/%{name} %{buildroot}%{_sbindir}/%{name}
 %dir %{_sharedstatedir}/%{name}/overlay
 
 %changelog
+* Fri May 30 2025 Lishan Liu <lishan.liu@intel.com> - 102-15
+- Update tmpfs mount command in tmpfsroot-mount.sh
+
 * Thu May 22 2025 Mun Chun Yep <mun.chun.yep@intel.com> - 102-14
 - Revert 6d93d4260 to fix tmpfs mount issue.
 

@@ -17,6 +17,7 @@
             "BootType": "efi",
             "PackageLists": [
                 "packagelists/tink-packages.json",
+                "packagelists/vpro-amt-packages.json",
                 "packagelists/minimal-os-packages.json"
             ],
             "AdditionalFiles": {
