@@ -1,8 +1,8 @@
 [Unit]
 Description=Device Discovery Agent
 Documentation=https://github.com/open-edge-platform/infra-onboarding
-After=network-online.target systemd-resolved.service systemd-networkd.service
-Requires=network-online.target systemd-resolved.service systemd-networkd.service
+After=network-online.target
+Requires=network-online.target
 
 [Service]
 Type=oneshot
