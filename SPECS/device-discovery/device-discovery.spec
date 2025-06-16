@@ -3,7 +3,7 @@
 Summary:        Device Discovery Agent for Edge Node
 Name:           device-discovery
 Epoch:          1
-Version:        0.0.1
+Version:        0.0.2
 Release:        1%{?dist}
 Distribution:   Edge Microvisor Toolkit
 Vendor:         Intel Corporation
