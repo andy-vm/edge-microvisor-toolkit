@@ -14,8 +14,6 @@ systemctl enable caddy.service
 systemctl enable fluent-bit.service
 systemctl enable device-discovery.service
 systemctl enable tink-worker.service
-#systemctl enable serial-getty@ttyS0.service
-systemctl enable serial-getty@ttyS1.service
 mkdir -p /etc/fluent-bit
 if [ ! -f /etc/fluent-bit/fluent-bit.conf ]; then
   touch /etc/fluent-bit/fluent-bit.conf
