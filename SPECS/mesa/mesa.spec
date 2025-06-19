@@ -85,7 +85,7 @@ Patch10:        gnome-shell-glthread-disable.patch
 
 Patch20:        0001-vulkan-wsi-x11-fix-use-of-uninitialised-xfixes-regio.patch
 
-BuildRequires:  meson >= 1.3.2
+BuildRequires:  meson >= 1.3.0
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  gettext
@@ -153,7 +153,7 @@ BuildRequires:  pkgconfig(LLVMSPIRVLib)
 %endif
 %if 0%{?with_opencl} || 0%{?with_nvk}
 BuildRequires:  bindgen
-BuildRequires:  rust
+BuildRequires:  rust-packaging
 %endif
 %if 0%{?with_nvk}
 BuildRequires:  cbindgen
