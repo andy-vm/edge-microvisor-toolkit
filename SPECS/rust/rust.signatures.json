@@ -7,6 +7,7 @@
   "rustc-1.74.0-aarch64-unknown-linux-gnu.tar.xz": "a49bb365481913ead305658e7e9dc621da7895036b840fb57b1bc85c721d07e6",
   "rustc-1.74.0-x86_64-unknown-linux-gnu.tar.xz": "7d464be2ae0d6ce69f056d1ea9a8ce2b3b1d537418caea216fdd303903972181",
   "rustc-1.75.0-src-cargo.tar.gz": "8b41ba09a0e998fce6bafa69c93c8c5384b29b38438104db7c98e348b4759979",
-  "rustc-1.75.0-src.tar.xz": "4526f786d673e4859ff2afa0bab2ba13c918b796519a25c1acce06dba9542340"
+  "rustc-1.75.0-src.tar.xz": "4526f786d673e4859ff2afa0bab2ba13c918b796519a25c1acce06dba9542340",
+  "rust-1.87.0.tar.gz": "dffb7e7bdffbb8f31e61737e987b9579fafc6b1a8fc04d3cb8a278707a4a1ea0"
  }
 }

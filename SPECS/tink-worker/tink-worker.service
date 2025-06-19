@@ -1,7 +1,8 @@
 [Unit]
 Description=Tinkerbell Worker Service
 Documentation=https://github.com/open-edge-platform/infra-onboarding
-After=network.target
+After=network.target caddy.service
+Requires=caddy.service
 
 [Service]
 Type=oneshot

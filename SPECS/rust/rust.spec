@@ -8,7 +8,7 @@
 
 Summary:        Rust Programming Language
 Name:           rust
-Version:        1.75.0
+Version:        1.87.0
 Release:        12%{?dist}
 License:        (ASL 2.0 OR MIT) AND BSD AND CC-BY-3.0
 Vendor:         Microsoft Corporation
@@ -19,31 +19,7 @@ URL:            https://www.rust-lang.org/
 #  - rust source official repo is https://github.com/rust-lang/rust
 #  - cargo source official repo is https://github.com/rust-lang/cargo
 #  - crates.io source official repo is https://github.com/rust-lang/crates.io
-Source0:        https://static.rust-lang.org/dist/rustc-%{version}-src.tar.xz
-# Note: the rust-%%{version}-cargo.tar.gz file contains a cache created by capturing the contents downloaded into $CARGO_HOME.
-# To update the cache, leverage the: generate_source_tarball.sh
-#
-# An example run for rust 1.68.2:
-# - Download Rust Source (1.68.2):
-#   wget https://static.rust-lang.org/dist/rustc-1.68.2-src.tar.xz
-# - Create a directory to store the output from the script:
-#   mkdir rustOutputDir
-# - Get prereqs for the script (for a mariner container):
-#   tdnf -y install rust wget jq tar ca-certificates
-# - Run the script:
-#   ./generate_source_tarball --srcTarball path/to/rustc-1.68.2-src.tar.xz --outFolder path/to/rustOutputDir --pkgVersion 1.68.2
-#
-
-Source1:        rustc-%{version}-src-cargo.tar.gz
-Source2:        https://static.rust-lang.org/dist/%{release_date}/cargo-%{stage0_version}-x86_64-unknown-linux-gnu.tar.xz
-Source3:        https://static.rust-lang.org/dist/%{release_date}/rustc-%{stage0_version}-x86_64-unknown-linux-gnu.tar.xz
-Source4:        https://static.rust-lang.org/dist/%{release_date}/rust-std-%{stage0_version}-x86_64-unknown-linux-gnu.tar.xz
-Source5:        https://static.rust-lang.org/dist/%{release_date}/cargo-%{stage0_version}-aarch64-unknown-linux-gnu.tar.xz
-Source6:        https://static.rust-lang.org/dist/%{release_date}/rustc-%{stage0_version}-aarch64-unknown-linux-gnu.tar.xz
-Source7:        https://static.rust-lang.org/dist/%{release_date}/rust-std-%{stage0_version}-aarch64-unknown-linux-gnu.tar.xz
-Patch0:         CVE-2023-45853.patch
-Patch1:         CVE-2024-32884.patch
-Patch2:         CVE-2024-31852.patch
+Source0:        https://github.com/rust-lang/rust/archive/refs/tags/%{version}.tar.gz#%{name}-%{version}.tar.gz
 
 BuildRequires:  binutils
 BuildRequires:  cmake
@@ -83,65 +59,38 @@ BuildArch:      noarch
 Documentation package for Rust.
 
 %prep
-# Setup .cargo directory
-mkdir -p $HOME
-pushd $HOME
-tar -xf %{SOURCE1} --no-same-owner
-popd
-%autosetup -p1 -n rustc-%{version}-src
-
-# Setup build/cache directory
-BUILD_CACHE_DIR="build/cache/%{release_date}"
-mkdir -pv "$BUILD_CACHE_DIR"
-%ifarch x86_64
-cp %{SOURCE2} "$BUILD_CACHE_DIR"
-cp %{SOURCE3} "$BUILD_CACHE_DIR"
-cp %{SOURCE4} "$BUILD_CACHE_DIR"
-%endif
-%ifarch aarch64
-cp %{SOURCE5} "$BUILD_CACHE_DIR"
-cp %{SOURCE6} "$BUILD_CACHE_DIR"
-cp %{SOURCE7} "$BUILD_CACHE_DIR"
-%endif
+%autosetup -p1 -n rust-%{version}
 
 %build
 # Disable symbol generation
 export CFLAGS="`echo " %{build_cflags} " | sed 's/ -g//'`"
 export CXXFLAGS="`echo " %{build_cxxflags} " | sed 's/ -g//'`"
 
-sh ./configure \
-    --prefix=%{_prefix} \
-    --enable-extended \
-    --enable-profiler \
-    --tools="cargo,clippy,rustfmt,rust-analyzer-proc-macro-srv,rust-demangler" \
-    --release-channel="stable" \
-    --release-description="Azure Linux %{version}-%{release}"
+sh ./configure --build=aarch64-unknown-linux-gnu \
+   --enable-full-tools \
+   --enable-profiler \
+   --enable-sanitizers \
+   --enable-compiler-docs \
+   --set target.aarch64-unknown-linux-gnu.linker=clang \
+   --set target.aarch64-unknown-linux-gnu.ar=/rustroot/bin/llvm-ar \
+   --set target.aarch64-unknown-linux-gnu.ranlib=/rustroot/bin/llvm-ranlib \
+   --set llvm.link-shared=true \
+   --set llvm.thin-lto=true \
+   --set llvm.libzstd=true \
+   --set llvm.ninja=false \
+   --set rust.debug-assertions=false \
+   --set rust.jemalloc \
+   --set rust.use-lld=true \
+   --set rust.lto=thin \
+   --set install.prefix=%{_prefix_local} --set install.sysconfdir=%{_prefix_local} \
+   --set rust.codegen-units=1
 
 # SUDO_USER=root bypasses a check in the python bootstrap that
 # makes rust refuse to pull sources from the internet
-USER=root SUDO_USER=root %make_build
-
-%check
-# We expect to generate dynamic CI contents in this folder, but it will fail since the .github folder is not included
-# with the published sources.
-mkdir -p .github/workflows
-./x.py run src/tools/expand-yaml-anchors
-
-ln -s %{_topdir}/BUILD/rustc-%{version}-src/build/x86_64-unknown-linux-gnu/stage2-tools-bin/rustfmt %{_topdir}/BUILD/rustc-%{version}-src/build/x86_64-unknown-linux-gnu/stage0/bin/
-ln -s %{_topdir}/BUILD/rustc-%{version}-src/vendor/ /root/vendor
-# remove rustdoc ui flaky test issue-98690.rs (which is tagged with 'unstable-options')
-rm -v ./tests/rustdoc-ui/issue-98690.*
-%make_build check
+USER=root SUDO_USER=root ./x.py build
 
 %install
-USER=root SUDO_USER=root %make_install
-mv %{buildroot}%{_docdir}/%{name}/LICENSE-THIRD-PARTY .
-rm %{buildroot}%{_docdir}/%{name}/{COPYRIGHT,LICENSE-APACHE,LICENSE-MIT}
-rm %{buildroot}%{_docdir}/%{name}/html/.lock
-rm %{buildroot}%{_docdir}/%{name}/*.old
-rm %{buildroot}%{_bindir}/*.old
-
-%ldconfig_scriptlets
+USER=root SUDO_USER=root ./x.py install
 
 %files
 %license LICENSE-APACHE LICENSE-MIT LICENSE-THIRD-PARTY COPYRIGHT
@@ -153,7 +102,6 @@ rm %{buildroot}%{_bindir}/*.old
 %{_libexecdir}/rust-analyzer-proc-macro-srv
 %{_bindir}/rust-gdb
 %{_bindir}/rust-gdbgui
-%{_bindir}/rust-demangler
 %{_bindir}/cargo
 %{_bindir}/cargo-clippy
 %{_bindir}/cargo-fmt

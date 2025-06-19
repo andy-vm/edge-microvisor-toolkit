@@ -155,6 +155,7 @@ BuildRequires:  pkgconfig(LLVMSPIRVLib)
 BuildRequires:  bindgen
 BuildRequires:  rust
 %endif
+BuildRequires:  rust
 %if 0%{?with_nvk}
 BuildRequires:  cbindgen
 BuildRequires:  (crate(paste) >= 1.0.14 with crate(paste) < 2)
@@ -758,7 +759,7 @@ popd
 %endif
 
 %changelog
-*  Jun 19 2025 Swee Yee Fonn <swee.yee.fonn@intel.com> - 25.0.0-1
+* Thu Jun 19 2025 Swee Yee Fonn <swee.yee.fonn@intel.com> - 25.0.0-1
 - Initial Edge Microvisor Toolkit import from Fedora (license: MIT).
 - Upgrade to version 25.0.0 required for SRIOV
 
