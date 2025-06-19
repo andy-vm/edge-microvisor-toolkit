@@ -64,6 +64,9 @@
 %global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?extra_platform_vulkan}
 %endif
 
+%global with_clc 0
+%global with_gallium_clover 0
+
 Name:           mesa
 Summary:        Mesa graphics libraries
 Version:        25.0.0
@@ -147,7 +150,7 @@ BuildRequires:  xtensor-devel
 %endif
 %if 0%{?with_opencl} || 0%{?with_nvk} || 0%{?with_intel_clc}
 BuildRequires:  clang-devel
-#BuildRequires:  pkgconfig(libclc)
+BuildRequires:  pkgconfig(libclc)
 BuildRequires:  pkgconfig(SPIRV-Tools)
 BuildRequires:  pkgconfig(LLVMSPIRVLib)
 %endif
@@ -465,7 +468,6 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
 %ifarch %{ix86}
   -Dglx-read-only-text=true \
 %endif
-  -Dmicrosoft-clc=disabled \
   %{nil}
 %meson_build
 
