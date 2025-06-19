@@ -465,6 +465,7 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
 %ifarch %{ix86}
   -Dglx-read-only-text=true \
 %endif
+  -Dmicrosoft-clc=disabled \
   %{nil}
 %meson_build
 
