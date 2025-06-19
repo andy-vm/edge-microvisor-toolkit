@@ -448,7 +448,7 @@ export MESON_PACKAGE_CACHE_DIR="%{cargo_registry}/"
 %if 0%{?with_intel_clc}
   -Dintel-clc=enabled \
 %else
-  -Dintel-clc=disabled \
+  -Dintel-clc=system \
 %endif
 %if 0%{?with_intel_vk_rt}
   -Dintel-rt=enabled \
