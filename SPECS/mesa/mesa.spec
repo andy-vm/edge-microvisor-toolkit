@@ -200,7 +200,7 @@ Requires:       %{name}-dri-drivers%{?_isa} = %{version}-%{release}
 
 %package libGL-devel
 Summary:        Mesa libGL development package
-Requires:       (%{name}-libGL%{?_isa} = %{version}-%{release} if %{name}-libGL%{?_isa})
+Requires:       %{name}-libGL%{?_isa} = %{version}-%{release}
 Requires:       libglvnd-devel%{?_isa} >= 1.3.2
 Provides:       libGL-devel
 Provides:       libGL-devel%{?_isa}
@@ -220,7 +220,7 @@ Requires:       %{name}-dri-drivers%{?_isa} = %{version}-%{release}
 
 %package libEGL-devel
 Summary:        Mesa libEGL development package
-Requires:       (%{name}-libEGL%{?_isa} = %{version}-%{release} if %{name}-libEGL%{?_isa})
+Requires:       %{name}-libEGL%{?_isa} = %{version}-%{release}
 Requires:       libglvnd-devel%{?_isa} >= 1.3.2
 Requires:       %{name}-khr-devel%{?_isa}
 Provides:       libEGL-devel
@@ -282,7 +282,7 @@ Recommends:     %{name}-dri-drivers%{?_isa} = %{version}-%{release}
 # If mesa-dri-drivers are installed, they must match in version. This is here to prevent using
 # older mesa-dri-drivers together with a newer mesa-libgbm and its dependants.
 # See https://bugzilla.redhat.com/show_bug.cgi?id=2193135 .
-Requires:       (%{name}-dri-drivers%{?_isa} = %{version}-%{release} if %{name}-dri-drivers%{?_isa})
+Requires:       %{name}-dri-drivers%{?_isa} = %{version}-%{release}
 
 %description libgbm
 %{summary}.
