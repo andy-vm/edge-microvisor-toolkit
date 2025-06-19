@@ -1,6 +1,6 @@
 Summary:        Extremely fast and user friendly build system
 Name:           meson
-Version:        1.3.1
+Version:        1.3.2
 Release:        1%{?dist}
 License:        ASL 2.0
 Vendor:         Microsoft Corporation
