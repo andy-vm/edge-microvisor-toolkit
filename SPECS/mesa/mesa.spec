@@ -148,7 +148,7 @@ BuildRequires:  xtensor-devel
 %endif
 %if 0%{?with_opencl} || 0%{?with_nvk} || 0%{?with_intel_clc}
 BuildRequires:  clang-devel
-BuildRequires:  pkgconfig(libclc)
+#BuildRequires:  pkgconfig(libclc)
 BuildRequires:  pkgconfig(SPIRV-Tools)
 BuildRequires:  pkgconfig(LLVMSPIRVLib)
 %endif
