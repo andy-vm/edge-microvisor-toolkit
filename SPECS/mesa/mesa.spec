@@ -11,7 +11,7 @@
 %endif
 %global base_vulkan ,amd
 %endif
-
+%global with_opencl 0
 %ifarch %{ix86} x86_64
 %global with_hardware  1
 %global with_crocus 1
