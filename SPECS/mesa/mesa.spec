@@ -17,7 +17,7 @@
 
 %ifnarch %{ix86}
 %if !0%{?rhel}
-%global with_teflon 1
+%global with_teflon 0
 %endif
 %endif
 
