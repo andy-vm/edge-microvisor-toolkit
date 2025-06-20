@@ -9,7 +9,7 @@
 Summary:        Rust Programming Language
 Name:           rust
 Version:        1.87.0
-Release:        12%{?dist}
+Release:        1%{?dist}
 License:        (ASL 2.0 OR MIT) AND BSD AND CC-BY-3.0
 Vendor:         Microsoft Corporation
 Distribution:   Azure Linux
@@ -19,7 +19,7 @@ URL:            https://www.rust-lang.org/
 #  - rust source official repo is https://github.com/rust-lang/rust
 #  - cargo source official repo is https://github.com/rust-lang/cargo
 #  - crates.io source official repo is https://github.com/rust-lang/crates.io
-Source0:        https://github.com/rust-lang/rust/archive/refs/tags/%{version}.tar.gz#%{name}-%{version}.tar.gz
+Source0:        https://github.com/rust-lang/rust/archive/refs/tags/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  binutils
 BuildRequires:  cmake
