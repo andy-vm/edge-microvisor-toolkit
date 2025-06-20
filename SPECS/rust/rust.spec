@@ -87,7 +87,7 @@ sh ./configure --build=aarch64-unknown-linux-gnu \
 
 # SUDO_USER=root bypasses a check in the python bootstrap that
 # makes rust refuse to pull sources from the internet
-USER=root SUDO_USER=root ./x.py build
+USER=root SUDO_USER=root ./x.py vendor && ./x.py build
 
 %install
 USER=root SUDO_USER=root ./x.py install
