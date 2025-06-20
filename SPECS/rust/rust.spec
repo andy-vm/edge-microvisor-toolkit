@@ -66,6 +66,8 @@ Documentation package for Rust.
 export CFLAGS="`echo " %{build_cflags} " | sed 's/ -g//'`"
 export CXXFLAGS="`echo " %{build_cxxflags} " | sed 's/ -g//'`"
 
+USER=root SUDO_USER=root ./x.py vendor
+
 sh ./configure --build=aarch64-unknown-linux-gnu \
    --enable-full-tools \
    --enable-profiler \
@@ -87,7 +89,7 @@ sh ./configure --build=aarch64-unknown-linux-gnu \
 
 # SUDO_USER=root bypasses a check in the python bootstrap that
 # makes rust refuse to pull sources from the internet
-USER=root SUDO_USER=root ./x.py vendor && ./x.py build
+USER=root SUDO_USER=root ./x.py build
 
 %install
 USER=root SUDO_USER=root ./x.py install
