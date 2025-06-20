@@ -66,7 +66,7 @@ Documentation package for Rust.
 export CFLAGS="`echo " %{build_cflags} " | sed 's/ -g//'`"
 export CXXFLAGS="`echo " %{build_cxxflags} " | sed 's/ -g//'`"
 
-USER=root SUDO_USER=root ./x.py vendor
+USER=root SUDO_USER=root mkdir -p vendor && ./x.py vendor
 
 sh ./configure --build=aarch64-unknown-linux-gnu \
    --enable-full-tools \
