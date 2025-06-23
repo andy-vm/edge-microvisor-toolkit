@@ -3,8 +3,8 @@
 
 # Release date and version of stage 0 compiler can be found in "src/stage0.json" inside the extracted "Source0".
 # Look for "date:" and "rustc:".
-%define release_date 2023-11-16
-%define stage0_version 1.74.0
+%define release_date 2025-04-03
+%define stage0_version 1.86.0
 
 Summary:        Rust Programming Language
 Name:           rust
@@ -19,7 +19,28 @@ URL:            https://www.rust-lang.org/
 #  - rust source official repo is https://github.com/rust-lang/rust
 #  - cargo source official repo is https://github.com/rust-lang/cargo
 #  - crates.io source official repo is https://github.com/rust-lang/crates.io
-Source0:        https://github.com/rust-lang/rust/archive/refs/tags/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        https://github.com/rust-lang/rust/archive/refs/tags/%{version}.tar.gz
+# Note: the rust-%%{version}-cargo.tar.gz file contains a cache created by capturing the contents downloaded into $CARGO_HOME.
+# To update the cache, leverage the: generate_source_tarball.sh
+#
+# An example run for rust 1.68.2:
+# - Download Rust Source (1.68.2):
+#   wget https://static.rust-lang.org/dist/rustc-1.68.2-src.tar.xz
+# - Create a directory to store the output from the script:
+#   mkdir rustOutputDir
+# - Get prereqs for the script (for a mariner container):
+#   tdnf -y install rust wget jq tar ca-certificates
+# - Run the script:
+#   ./generate_source_tarball --srcTarball path/to/rustc-1.68.2-src.tar.xz --outFolder path/to/rustOutputDir --pkgVersion 1.68.2
+#
+
+#Source1:        rustc-%{version}-src-cargo.tar.gz
+Source2:        https://static.rust-lang.org/dist/%{release_date}/cargo-%{stage0_version}-x86_64-unknown-linux-gnu.tar.xz
+Source3:        https://static.rust-lang.org/dist/%{release_date}/rustc-%{stage0_version}-x86_64-unknown-linux-gnu.tar.xz
+Source4:        https://static.rust-lang.org/dist/%{release_date}/rust-std-%{stage0_version}-x86_64-unknown-linux-gnu.tar.xz
+Source5:        https://static.rust-lang.org/dist/%{release_date}/cargo-%{stage0_version}-aarch64-unknown-linux-gnu.tar.xz
+Source6:        https://static.rust-lang.org/dist/%{release_date}/rustc-%{stage0_version}-aarch64-unknown-linux-gnu.tar.xz
+Source7:        https://static.rust-lang.org/dist/%{release_date}/rust-std-%{stage0_version}-aarch64-unknown-linux-gnu.tar.xz
 
 BuildRequires:  binutils
 BuildRequires:  cmake
