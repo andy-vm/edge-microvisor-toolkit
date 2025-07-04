@@ -4,8 +4,13 @@
 
 # Insert connection-tracking modules
 # (not needed if built into the kernel)
-modprobe nf_conntrack
-modprobe xt_LOG
+if ! lsmod | grep -q nf_conntrack; then
+    modprobe nf_conntrack
+fi
+
+if ! lsmod | grep -q xt_LOG; then
+    modprobe xt_LOG
+fi
 
 # Enable broadcast echo Protection
 echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
@@ -76,9 +81,8 @@ ip6tables -t mangle -F
 ip6tables -t mangle -X
 
 #restore ipv4 rules
-iptables-restore < /etc/systemd/scripts/ip4save
-
+iptables-restore < /etc/systemd/scripts/ip4save &
 #restore ipv6 rules
-ip6tables-restore < /etc/systemd/scripts/ip6save
-
+ip6tables-restore < /etc/systemd/scripts/ip6save &
+wait
 # End /etc/systemd/scripts/iptables
