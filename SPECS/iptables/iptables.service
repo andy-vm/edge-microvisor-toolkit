@@ -1,7 +1,6 @@
 [Unit]
 Description=Load Iptables Rules
 ConditionFileIsExecutable=/etc/systemd/scripts/iptables
-DefaultDependencies=no
 After=network.target
 
 [Service]
