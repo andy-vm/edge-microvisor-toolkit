@@ -30,7 +30,7 @@ rm -rf /boot/linux.efi
 rm -rf /boot/initramfs-*.img
 rm -rf /boot/vmlinuz*
 
-/sbin/ras-mc-ctl --register-labels
+/usr/sbin/ras-mc-ctl --register-labels
 modprobe nf_conntrack
 modprobe xt_LOG
 
