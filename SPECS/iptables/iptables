@@ -76,9 +76,8 @@ ip6tables -t mangle -F
 ip6tables -t mangle -X
 
 #restore ipv4 rules
-iptables-restore < /etc/systemd/scripts/ip4save
-
+iptables-restore < /etc/systemd/scripts/ip4save &
 #restore ipv6 rules
-ip6tables-restore < /etc/systemd/scripts/ip6save
-
+ip6tables-restore < /etc/systemd/scripts/ip6save &
+wait
 # End /etc/systemd/scripts/iptables
