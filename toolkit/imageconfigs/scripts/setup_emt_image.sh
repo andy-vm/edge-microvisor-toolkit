@@ -30,10 +30,6 @@ rm -rf /boot/linux.efi
 rm -rf /boot/initramfs-*.img
 rm -rf /boot/vmlinuz*
 
-#/usr/sbin/ras-mc-ctl --register-labels
-modprobe nf_conntrack
-modprobe xt_LOG
-
 # preload the hwdb.bin
 systemd-hwdb update
 [ -f /etc/udev/hwdb.bin ] && mv /etc/udev/hwdb.bin /usr/lib/udev/hwdb.bin
