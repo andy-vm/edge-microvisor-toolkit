@@ -30,7 +30,9 @@ rm -rf /boot/linux.efi
 rm -rf /boot/initramfs-*.img
 rm -rf /boot/vmlinuz*
 
-ssh-keygen -A
+/sbin/ras-mc-ctl --register-labels
+modprobe nf_conntrack
+modprobe xt_LOG
 
 # preload the hwdb.bin
 systemd-hwdb update
