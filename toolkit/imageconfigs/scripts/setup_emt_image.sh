@@ -30,6 +30,10 @@ rm -rf /boot/linux.efi
 rm -rf /boot/initramfs-*.img
 rm -rf /boot/vmlinuz*
 
+iptables-restore < /etc/systemd/scripts/ip4save
+#restore ipv6 rules
+ip6tables-restore < /etc/systemd/scripts/ip6save
+
 # preload the hwdb.bin
 systemd-hwdb update
 [ -f /etc/udev/hwdb.bin ] && mv /etc/udev/hwdb.bin /usr/lib/udev/hwdb.bin
