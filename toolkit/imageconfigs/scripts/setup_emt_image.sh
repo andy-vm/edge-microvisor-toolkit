@@ -30,7 +30,7 @@ rm -rf /boot/linux.efi
 rm -rf /boot/initramfs-*.img
 rm -rf /boot/vmlinuz*
 
-systemctl disable systemd-networkd-wait-online.service
+#systemctl disable systemd-networkd-wait-online.service
 touch /etc/edge-node/metrics/disabled
 
 # preload the hwdb.bin
