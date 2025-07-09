@@ -31,6 +31,7 @@ rm -rf /boot/initramfs-*.img
 rm -rf /boot/vmlinuz*
 
 systemctl disable systemd-networkd-wait-online.service
+touch /etc/edge-node/metrics/disabled
 
 # preload the hwdb.bin
 systemd-hwdb update
