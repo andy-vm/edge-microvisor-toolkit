@@ -30,6 +30,8 @@ rm -rf /boot/linux.efi
 rm -rf /boot/initramfs-*.img
 rm -rf /boot/vmlinuz*
 
+systemctl disable systemd-networkd-wait-online.service
+
 # preload the hwdb.bin
 systemd-hwdb update
 [ -f /etc/udev/hwdb.bin ] && mv /etc/udev/hwdb.bin /usr/lib/udev/hwdb.bin
