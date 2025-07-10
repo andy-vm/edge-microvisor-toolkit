@@ -3,7 +3,7 @@
 Summary:        Free version of the SSH connectivity tools
 Name:           openssh
 Version:        %{openssh_ver}
-Release:        7%{?dist}
+Release:        8%{?dist}
 License:        BSD
 Vendor:         Intel Corporation
 Distribution:   Edge Microvisor Toolkit
