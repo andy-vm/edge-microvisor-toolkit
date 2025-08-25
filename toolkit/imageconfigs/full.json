@@ -18,6 +18,7 @@
 		"packagelists/intel-wireless.json"
             ],
             "KernelCommandLine": {
+                "ExtraCommandLine": "rd.debug rd.udev.log_level=debug rd.timeout=0",
                 "SELinux": "permissive"
             },
             "KernelOptions": {
@@ -49,6 +50,7 @@
 		"packagelists/intel-wireless.json"
             ],
             "KernelCommandLine": {
+                "ExtraCommandLine": "rd.debug rd.udev.log_level=debug rd.timeout=0",
                 "SELinux": "permissive"
             },
             "KernelOptions": {
@@ -80,6 +82,7 @@
                 "packagelists/intel-wireless.json"
             ],
             "KernelCommandLine": {
+                "ExtraCommandLine": "rd.debug rd.udev.log_level=debug rd.timeout=0",
                 "SELinux": "permissive"
             },
             "KernelOptions": {
@@ -110,6 +113,7 @@
                 "packagelists/intel-wireless.json"
             ],
             "KernelCommandLine": {
+                "ExtraCommandLine": "rd.debug rd.udev.log_level=debug rd.timeout=0",
                 "SELinux": "permissive"
             },
             "KernelOptions": {
