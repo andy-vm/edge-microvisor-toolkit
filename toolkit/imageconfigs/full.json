@@ -18,7 +18,7 @@
 		"packagelists/intel-wireless.json"
             ],
             "KernelCommandLine": {
-                "ExtraCommandLine": "rd.debug rd.udev.log_level=debug rd.timeout=0 systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on systemd.debug-shell=1 rd.memdebug=5 rd.live.debug=1",
+                "ExtraCommandLine": "rd.debug rd.udev.log_level=debug rd.timeout=0 systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on systemd.debug-shell=1 rd.memdebug=5 rd.live.debug=1 loglevel=7",
                 "SELinux": "permissive"
             },
             "KernelOptions": {
@@ -50,7 +50,7 @@
 		"packagelists/intel-wireless.json"
             ],
             "KernelCommandLine": {
-                "ExtraCommandLine": "rd.debug rd.udev.log_level=debug rd.timeout=0 systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on systemd.debug-shell=1 rd.memdebug=5 rd.live.debug=1",
+                "ExtraCommandLine": "rd.debug rd.udev.log_level=debug rd.timeout=0 systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on systemd.debug-shell=1 rd.memdebug=5 rd.live.debug=1 loglevel=7",
                 "SELinux": "permissive"
             },
             "KernelOptions": {
@@ -82,7 +82,7 @@
                 "packagelists/intel-wireless.json"
             ],
             "KernelCommandLine": {
-                "ExtraCommandLine": "rd.debug rd.udev.log_level=debug rd.timeout=0 systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on systemd.debug-shell=1 rd.memdebug=5 rd.live.debug=1",
+                "ExtraCommandLine": "rd.debug rd.udev.log_level=debug rd.timeout=0 systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on systemd.debug-shell=1 rd.memdebug=5 rd.live.debug=1 loglevel=7",
                 "SELinux": "permissive"
             },
             "KernelOptions": {
@@ -113,7 +113,7 @@
                 "packagelists/intel-wireless.json"
             ],
             "KernelCommandLine": {
-                "ExtraCommandLine": "rd.debug rd.udev.log_level=debug rd.timeout=0 systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on systemd.debug-shell=1 rd.memdebug=5 rd.live.debug=1",
+                "ExtraCommandLine": "rd.debug rd.udev.log_level=debug rd.timeout=0 systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on systemd.debug-shell=1 rd.memdebug=5 rd.live.debug=1 loglevel=7",
                 "SELinux": "permissive"
             },
             "KernelOptions": {
