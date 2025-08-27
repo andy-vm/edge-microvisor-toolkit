@@ -618,7 +618,7 @@ func buildImage(mountPointMap, mountPointToFsTypeMap, mountPointToMountArgsMap, 
 		return
 	}
 
-	err = installutils.AddImageIDFile(installChroot.RootDir(), *buildNumber)
+	err = installutils.AddImageIDFile(installChroot.RootDir(), *buildNumber, *liveInstallFlag)
 	if err != nil {
 		err = fmt.Errorf("failed to add image ID file:\n%w", err)
 		return
