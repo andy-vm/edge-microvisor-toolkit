@@ -56,6 +56,11 @@
             "KernelOptions": {
                 "default": "kernel"
             },
+            "FinalizeImageScripts": [
+                {
+                    "Path": "scripts/setup_iso_image.sh"
+                }
+            ],
             "AdditionalFiles": {
                 "additionalconfigs/99-dhcp-en.network": "/etc/systemd/network/99-dhcp-en.network"
             },
