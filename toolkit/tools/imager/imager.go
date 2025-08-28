@@ -266,11 +266,19 @@ func buildSystemConfig(systemConfig configuration.SystemConfig, disks []configur
 			return
 		}
 
-		// copy image-id file over
+		// copy image-id file over if liveInstallFlag
 		if *liveInstallFlag {
+			var b []byte
+			b, err = os.ReadFile("./etc/image-id")
+			if err != nil {
+				err = fmt.Errorf("failed to read image-id file:\n%w", err)
+				return
+			}
+			logger.Log.Infof("image-id file: %s", string(b))
+
 			fileToCopy := safechroot.FileToCopy{
 				Src:  "./etc/image-id",
-				Dest: "." + installRoot + "/etc/image-id",
+				Dest: filepath.Join(installRoot, "./etc/image-id"),
 			}
 			if err = setupChroot.AddFiles(fileToCopy); err != nil {
 				err = fmt.Errorf("failed to copy image-id file into setup chroot:\n%w", err)
