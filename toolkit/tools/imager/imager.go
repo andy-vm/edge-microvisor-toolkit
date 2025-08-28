@@ -266,6 +266,18 @@ func buildSystemConfig(systemConfig configuration.SystemConfig, disks []configur
 			return
 		}
 
+		// copy image-id file over
+		if *liveInstallFlag {
+			fileToCopy := safechroot.FileToCopy{
+				Src:  "./etc/image-id",
+				Dest: "." + installRoot + "/etc/image-id",
+			}
+			if err = setupChroot.AddFiles(fileToCopy); err != nil {
+				err = fmt.Errorf("failed to copy image-id file into setup chroot:\n%w", err)
+				return
+			}
+		}
+
 		timestamp.StopEvent(nil) // create offline install env
 
 		err = setupChroot.Run(func() error {
