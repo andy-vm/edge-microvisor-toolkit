@@ -266,9 +266,11 @@ func buildSystemConfig(systemConfig configuration.SystemConfig, disks []configur
 			return
 		}
 
+		absPath, _ := filepath.Abs(".")
+		installutils.ReportActionf("image-id absPath: %s liveInstallFlag %v", absPath, *liveInstallFlag)
 		for _, dir := range []string{"../", "./", "./etc"} {
 			fs, _ := listFiles(dir)
-			logger.Log.Infof("files under dir %s: %v", dir, fs)
+			installutils.ReportActionf("image-id files under dir %s: %v", dir, fs)
 		}
 
 		// copy image-id file over if liveInstallFlag
@@ -279,13 +281,14 @@ func buildSystemConfig(systemConfig configuration.SystemConfig, disks []configur
 				err = fmt.Errorf("failed to read image-id file:\n%w", err)
 				return
 			}
-			logger.Log.Infof("image-id file: %s", string(b))
+			installutils.ReportActionf("image-id file: %s", string(b))
 
 			fileToCopy := safechroot.FileToCopy{
 				Src:  "./etc/image-id",
 				Dest: filepath.Join(installRoot, "./etc/image-id"),
 			}
 			if err = setupChroot.AddFiles(fileToCopy); err != nil {
+				installutils.ReportActionf("failed to copy image-id file: %W", err)
 				err = fmt.Errorf("failed to copy image-id file into setup chroot:\n%w", err)
 				return
 			}
