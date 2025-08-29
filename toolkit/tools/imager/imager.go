@@ -157,9 +157,21 @@ func buildSystemConfig(systemConfig configuration.SystemConfig, disks []configur
 		extraDirectories       []string
 	)
 
+	var (
+		imageIDContent string
+		imageIDBytes   []byte
+	)
 	absPath, _ := filepath.Abs(".")
+	imageIDBytes, err = os.ReadFile(filepath.Join(absPath, "../etc/image-id"))
+	if err != nil {
+		err = fmt.Errorf("failed to read image-id file:\n%w", err)
+		return
+	}
+	imageIDContent = string(imageIDBytes)
+	installutils.ReportActionf("image-id file: %s", imageIDContent)
+
 	installutils.ReportActionf("image-id absPath: %s liveInstallFlag %v", absPath, *liveInstallFlag)
-	for _, dir := range []string{"../", "./", "../etc", "./etc"} {
+	for _, dir := range []string{"../", "./", "../etc"} {
 		fs, _ := listFiles(dir)
 		installutils.ReportActionf("image-id files under dir %s: %v", dir, fs)
 	}
@@ -265,33 +277,25 @@ func buildSystemConfig(systemConfig configuration.SystemConfig, disks []configur
 		}
 		defer setupChroot.Close(leaveChrootOnDisk)
 
-		// Before entering the chroot, copy in any and all host files needed and
-		// fix up their paths to be in the tmp directory.
-		err = fixupExtraFilesIntoChroot(setupChroot, &systemConfig)
-		if err != nil {
-			err = fmt.Errorf("failed to copy extra files into setup chroot:\n%w", err)
-			return
-		}
-
 		// copy image-id file over if liveInstallFlag
 		if *liveInstallFlag {
-			var b []byte
-			b, err = os.ReadFile("./etc/image-id")
-			if err != nil {
-				err = fmt.Errorf("failed to read image-id file:\n%w", err)
-				return
-			}
-			installutils.ReportActionf("image-id file: %s", string(b))
-
 			fileToCopy := safechroot.FileToCopy{
-				Src:  "./etc/image-id",
-				Dest: filepath.Join(installRoot, "./etc/image-id"),
+				Content: &imageIDContent,
+				Dest:    filepath.Join(installRoot, "./etc/image-id"),
 			}
 			if err = setupChroot.AddFiles(fileToCopy); err != nil {
 				installutils.ReportActionf("failed to copy image-id file: %W", err)
 				err = fmt.Errorf("failed to copy image-id file into setup chroot:\n%w", err)
 				return
 			}
+		}
+
+		// Before entering the chroot, copy in any and all host files needed and
+		// fix up their paths to be in the tmp directory.
+		err = fixupExtraFilesIntoChroot(setupChroot, &systemConfig)
+		if err != nil {
+			err = fmt.Errorf("failed to copy extra files into setup chroot:\n%w", err)
+			return
 		}
 
 		timestamp.StopEvent(nil) // create offline install env
