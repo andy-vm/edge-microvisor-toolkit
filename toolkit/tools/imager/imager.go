@@ -266,6 +266,11 @@ func buildSystemConfig(systemConfig configuration.SystemConfig, disks []configur
 			return
 		}
 
+		for _, dir := range []string{"../", "./", "./etc"} {
+			fs, _ := listFiles(dir)
+			logger.Log.Infof("files under dir %s: %v", dir, fs)
+		}
+
 		// copy image-id file over if liveInstallFlag
 		if *liveInstallFlag {
 			var b []byte
@@ -345,6 +350,19 @@ func buildSystemConfig(systemConfig configuration.SystemConfig, disks []configur
 	}
 
 	return
+}
+
+func listFiles(dir string) ([]string, error) {
+	entries, err := os.ReadDir(dir)
+	if err != nil {
+		return nil, err
+	}
+
+	var files []string
+	for _, v := range entries {
+		files = append(files, filepath.Join(dir, v.Name()))
+	}
+	return files, nil
 }
 
 func setupDiskEncryption(systemConfig *configuration.SystemConfig, encryptedRoot *diskutils.EncryptedRootDevice, keyFileDir string) (err error) {
