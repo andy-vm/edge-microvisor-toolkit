@@ -1067,11 +1067,11 @@ func clearSystemdState(installChroot *safechroot.Chroot, enableSystemdFirstboot 
 // BUILD_NUMBER: The build number of the image
 // IMAGE_BUILD_DATE: The date when the image is built in format YYYYMMDDHHMMSS
 // IMAGE_UUID: The UUID of the image
-func AddImageIDFile(installChrootRootDir string, buildNumber string, liveInstallFlag ...bool) (err error) {
-	// If liveInstallFlag is provided and set to true, do not create the image-id file
-	if len(liveInstallFlag) > 0 && liveInstallFlag[0] {
-		return nil
-	}
+func AddImageIDFile(installChrootRootDir string, buildNumber string, imageIDContent string) (err error) {
+	// // If liveInstallFlag is provided and set to true, do not create the image-id file
+	// if len(liveInstallFlag) > 0 && liveInstallFlag[0] {
+	// 	return nil
+	// }
 
 	// Check if /etc directory exists and it does not, throw an error
 	_, err = os.Stat(filepath.Join(installChrootRootDir, "/etc"))
@@ -1097,7 +1097,10 @@ func AddImageIDFile(installChrootRootDir string, buildNumber string, liveInstall
 	// Get the current time in UTC and in format "YYYYMMDDHHMMSS"
 	imageBuildDate := time.Now().UTC().Format("20060102150405")
 
-	imageIDContent := fmt.Sprintf("BUILD_NUMBER=%s\nIMAGE_BUILD_DATE=%s\nIMAGE_UUID=%s\n", buildNumber, imageBuildDate, uuid.New().String())
+	if imageIDContent == "" {
+		imageIDContent = fmt.Sprintf("BUILD_NUMBER=%s\nIMAGE_BUILD_DATE=%s\nIMAGE_UUID=%s\n",
+			buildNumber, imageBuildDate, uuid.New().String())
+	}
 	imageIDFilePath := filepath.Join(installChrootRootDir, imageIDFile)
 
 	fileCreateErr := file.Create(imageIDFilePath, imageIDFilePerms)

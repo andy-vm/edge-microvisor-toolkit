@@ -47,6 +47,7 @@ var (
 	profFlags        = exe.SetupProfileFlags(app)
 	genEMTList       = app.Flag("emt-distrib-specs", "Add Edge Microvisor Toolkit modified status to package in manifest.").Bool()
 	specDir          = app.Flag("spec-dir", "Directory to search for SPEC files.").ExistingDir()
+	imageIDContent   string
 )
 
 const (
@@ -157,10 +158,7 @@ func buildSystemConfig(systemConfig configuration.SystemConfig, disks []configur
 		extraDirectories       []string
 	)
 
-	var (
-		imageIDContent string
-		imageIDBytes   []byte
-	)
+	var imageIDBytes []byte
 	absPath, _ := filepath.Abs(".")
 	if *liveInstallFlag {
 		imageIDBytes, err = os.ReadFile(filepath.Join(absPath, "../etc/image-id"))
@@ -278,29 +276,27 @@ func buildSystemConfig(systemConfig configuration.SystemConfig, disks []configur
 		}
 		defer setupChroot.Close(leaveChrootOnDisk)
 
-		// copy image-id file over if liveInstallFlag
-		if *liveInstallFlag {
-			fileToCopy := safechroot.FileToCopy{
-				Content: &imageIDContent,
-				Dest:    filepath.Join(installRoot, "./etc/image-id"),
-			}
-			if err = setupChroot.AddFiles(fileToCopy); err != nil {
-				installutils.ReportActionf("failed to copy image-id file: %W", err)
-				err = fmt.Errorf("failed to copy image-id file into setup chroot:\n%w", err)
-				return
-			}
-			{
-				fileToCopy := safechroot.FileToCopy{
-					Content: &imageIDContent,
-					Dest:    filepath.Join(installRoot, "./etc/image-id"),
-				}
-				if err = setupChroot.AddFiles(fileToCopy); err != nil {
-					installutils.ReportActionf("failed to copy image-id file: %W", err)
-					err = fmt.Errorf("failed to copy image-id file into setup chroot:\n%w", err)
-					return
-				}
-			}
-		}
+		// // copy image-id file over if liveInstallFlag
+		// if *liveInstallFlag {
+		// 	fileToCopy := safechroot.FileToCopy{
+		// 		Content: &imageIDContent,
+		// 		Dest:    "./etc/image-id",
+		// 	}
+		// 	if err = setupChroot.AddFiles(fileToCopy); err != nil {
+		// 		installutils.ReportActionf("failed to copy image-id file: %W", err)
+		// 	}
+		// 	{
+		// 		fileToCopy := safechroot.FileToCopy{
+		// 			Content: &imageIDContent,
+		// 			Dest:    filepath.Join(installRoot, "./etc/image-id"),
+		// 		}
+		// 		if err = setupChroot.AddFiles(fileToCopy); err != nil {
+		// 			installutils.ReportActionf("failed to copy image-id file: %W", err)
+		// 			// err = fmt.Errorf("failed to copy image-id file into setup chroot:\n%w", err)
+		// 			// return
+		// 		}
+		// 	}
+		// }
 
 		// Before entering the chroot, copy in any and all host files needed and
 		// fix up their paths to be in the tmp directory.
@@ -675,7 +671,7 @@ func buildImage(mountPointMap, mountPointToFsTypeMap, mountPointToMountArgsMap, 
 		return
 	}
 
-	err = installutils.AddImageIDFile(installChroot.RootDir(), *buildNumber, *liveInstallFlag)
+	err = installutils.AddImageIDFile(installChroot.RootDir(), *buildNumber, imageIDContent)
 	if err != nil {
 		err = fmt.Errorf("failed to add image ID file:\n%w", err)
 		return
