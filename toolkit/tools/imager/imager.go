@@ -157,6 +157,13 @@ func buildSystemConfig(systemConfig configuration.SystemConfig, disks []configur
 		extraDirectories       []string
 	)
 
+	absPath, _ := filepath.Abs(".")
+	installutils.ReportActionf("image-id absPath: %s liveInstallFlag %v", absPath, *liveInstallFlag)
+	for _, dir := range []string{"../", "./", "../etc", "./etc"} {
+		fs, _ := listFiles(dir)
+		installutils.ReportActionf("image-id files under dir %s: %v", dir, fs)
+	}
+
 	// Get list of packages to install into image
 	packagesToInstall, err := installutils.PackageNamesFromSingleSystemConfig(systemConfig)
 	if err != nil {
@@ -264,13 +271,6 @@ func buildSystemConfig(systemConfig configuration.SystemConfig, disks []configur
 		if err != nil {
 			err = fmt.Errorf("failed to copy extra files into setup chroot:\n%w", err)
 			return
-		}
-
-		absPath, _ := filepath.Abs(".")
-		installutils.ReportActionf("image-id absPath: %s liveInstallFlag %v", absPath, *liveInstallFlag)
-		for _, dir := range []string{"../", "./", "./etc"} {
-			fs, _ := listFiles(dir)
-			installutils.ReportActionf("image-id files under dir %s: %v", dir, fs)
 		}
 
 		// copy image-id file over if liveInstallFlag
