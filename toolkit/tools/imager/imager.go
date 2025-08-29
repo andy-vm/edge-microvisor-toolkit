@@ -162,14 +162,15 @@ func buildSystemConfig(systemConfig configuration.SystemConfig, disks []configur
 		imageIDBytes   []byte
 	)
 	absPath, _ := filepath.Abs(".")
-	imageIDBytes, err = os.ReadFile(filepath.Join(absPath, "../etc/image-id"))
-	if err != nil {
-		err = fmt.Errorf("failed to read image-id file:\n%w", err)
-		return
+	if *liveInstallFlag {
+		imageIDBytes, err = os.ReadFile(filepath.Join(absPath, "../etc/image-id"))
+		if err != nil {
+			err = fmt.Errorf("failed to read image-id file:\n%w", err)
+			return
+		}
+		imageIDContent = string(imageIDBytes)
+		installutils.ReportActionf("image-id file: %s", imageIDContent)
 	}
-	imageIDContent = string(imageIDBytes)
-	installutils.ReportActionf("image-id file: %s", imageIDContent)
-
 	installutils.ReportActionf("image-id absPath: %s liveInstallFlag %v", absPath, *liveInstallFlag)
 	for _, dir := range []string{"../", "./", "../etc"} {
 		fs, _ := listFiles(dir)
