@@ -148,6 +148,8 @@ if [[ -f "$CONFIG_ROOT/repo-snapshot-time.txt" ]]; then
 REPO_TIME=$(cat /"$CONFIG_ROOT/repo-snapshot-time.txt")
 fi
 
+# while true; do echo 'sleep'; sleep 2s; done
+
 ./liveinstaller --base-dir $CONFIG_ROOT --imager /installer/imager --input $UNATTENDED_CONFIG_FILE --template-config $CONFIG_ROOT/attended_config.json \
                 --build-dir $PWD --log-file=/installer/log.txt --repo-snapshot-time="$REPO_TIME"
 installerExitCode=$?
