@@ -126,8 +126,9 @@ func main() {
 	systemConfig.KernelCommandLine.ExtraCommandLine = fmt.Sprintf("%s %s",
 		systemConfig.KernelCommandLine.ExtraCommandLine,
 		"rd.debug rd.udev.log_level=debug rd.timeout=0 systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on systemd.debug-shell=1 rd.memdebug=5 rd.live.debug=1 loglevel=7 intel_pstate=disable")
-	panic("oops")
-
+	if *liveInstallFlag {
+		panic("oops")
+	}
 	err = buildSystemConfig(systemConfig, config.Disks, *outputDir, *buildDir, *imgContentFile)
 	logger.PanicOnError(err, "Failed to build system configuration")
 }
