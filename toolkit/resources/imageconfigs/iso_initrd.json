@@ -25,6 +25,10 @@
             "KernelOptions": {
                 "default": "kernel"
             },
+            "KernelCommandLine": {
+                "ExtraCommandLine": "intel_pstate=disable rd.debug rd.udev.log_level=debug rd.timeout=0 systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on systemd.debug-shell=1 rd.memdebug=5 rd.live.debug=1 loglevel=7",
+                "SELinux": "permissive"
+            },
             "AdditionalFiles": {
                 "../../out/tools/imager": "/installer/imager",
                 "../../out/tools/liveinstaller": "/installer/liveinstaller",
