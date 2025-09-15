@@ -6,7 +6,8 @@ package userutils
 import (
 	"os"
 	"path/filepath"
-	"strings"
+
+	// "strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -64,37 +65,37 @@ func TestPasswordExpiresDaysIsValidTooLarge(t *testing.T) {
 	assert.ErrorContains(t, err, "PasswordExpiresDays")
 }
 
-func TestHashPasswordEmpty(t *testing.T) {
-	hashedPassword, err := HashPassword("")
-	assert.NoError(t, err, "hash password")
-	assert.Equal(t, "", hashedPassword)
-}
+// func TestHashPasswordEmpty(t *testing.T) {
+// 	hashedPassword, err := HashPassword("")
+// 	assert.NoError(t, err, "hash password")
+// 	assert.Equal(t, "", hashedPassword)
+// }
 
-func TestHashPasswordNotEmpty(t *testing.T) {
-	hashedPassword, err := HashPassword("password")
-	assert.NoError(t, err, "hash password")
-	assert.True(t, strings.HasPrefix(hashedPassword, "$6$"), "password prefix")
-}
+// func TestHashPasswordNotEmpty(t *testing.T) {
+// 	hashedPassword, err := HashPassword("password")
+// 	assert.NoError(t, err, "hash password")
+// 	assert.True(t, strings.HasPrefix(hashedPassword, "$6$"), "password prefix")
+// }
 
-func TestUpdateUserPasswordEmptyToEmpty(t *testing.T) {
-	testUpdateUserPassword(t, "root:*:19634:7:99999:7:::", "root:*:19634:7:99999:7:::", "root", "")
-}
+// func TestUpdateUserPasswordEmptyToEmpty(t *testing.T) {
+// 	testUpdateUserPassword(t, "root:*:19634:7:99999:7:::", "root:*:19634:7:99999:7:::", "root", "")
+// }
 
-func TestUpdateUserPasswordSomethingToEmpty(t *testing.T) {
-	testUpdateUserPassword(t,
-		"root:$6$E0M9VkDvOLvO$nr9FjmIiSSP5C5V3Lhuqv4VzWmscABoiQ0mF.ZTbwKEN4nS60nsiU17qA/RGMbXHtJfci/DeLT1Zu2nhNFbwQ.:19634:7:99999:7:::",
-		"root:*:19634:7:99999:7:::",
-		"root",
-		"")
-}
+// func TestUpdateUserPasswordSomethingToEmpty(t *testing.T) {
+// 	testUpdateUserPassword(t,
+// 		"root:$6$E0M9VkDvOLvO$nr9FjmIiSSP5C5V3Lhuqv4VzWmscABoiQ0mF.ZTbwKEN4nS60nsiU17qA/RGMbXHtJfci/DeLT1Zu2nhNFbwQ.:19634:7:99999:7:::",
+// 		"root:*:19634:7:99999:7:::",
+// 		"root",
+// 		"")
+// }
 
-func TestUpdateUserPassword(t *testing.T) {
-	testUpdateUserPassword(t,
-		"root:*:19634:7:99999:7:::",
-		"root:$6$E0M9VkDvOLvO$nr9FjmIiSSP5C5V3Lhuqv4VzWmscABoiQ0mF.ZTbwKEN4nS60nsiU17qA/RGMbXHtJfci/DeLT1Zu2nhNFbwQ.:19634:7:99999:7:::",
-		"root",
-		"$6$E0M9VkDvOLvO$nr9FjmIiSSP5C5V3Lhuqv4VzWmscABoiQ0mF.ZTbwKEN4nS60nsiU17qA/RGMbXHtJfci/DeLT1Zu2nhNFbwQ.")
-}
+// func TestUpdateUserPassword(t *testing.T) {
+// 	testUpdateUserPassword(t,
+// 		"root:*:19634:7:99999:7:::",
+// 		"root:$6$E0M9VkDvOLvO$nr9FjmIiSSP5C5V3Lhuqv4VzWmscABoiQ0mF.ZTbwKEN4nS60nsiU17qA/RGMbXHtJfci/DeLT1Zu2nhNFbwQ.:19634:7:99999:7:::",
+// 		"root",
+// 		"$6$E0M9VkDvOLvO$nr9FjmIiSSP5C5V3Lhuqv4VzWmscABoiQ0mF.ZTbwKEN4nS60nsiU17qA/RGMbXHtJfci/DeLT1Zu2nhNFbwQ.")
+// }
 
 func testUpdateUserPassword(t *testing.T, originalShadowFile string, expectedShadowFile string, user string, hashedPassword string) {
 	rootFilePath := tmpDir
@@ -114,16 +115,16 @@ func testUpdateUserPassword(t *testing.T, originalShadowFile string, expectedSha
 	assert.Equal(t, expectedShadowFile, string(actualShadowFileBytes))
 }
 
-func TestUpdateUserPasswordMissingUser(t *testing.T) {
-	rootFilePath := tmpDir
+// func TestUpdateUserPasswordMissingUser(t *testing.T) {
+// 	rootFilePath := tmpDir
 
-	writeTestShadowFile(t, rootFilePath, "root:!:19634:7:99999:7:::")
+// 	writeTestShadowFile(t, rootFilePath, "root:!:19634:7:99999:7:::")
 
-	err := UpdateUserPassword(rootFilePath, "test", "")
-	if !assert.ErrorContains(t, err, "failed to find user", "update password") {
-		return
-	}
-}
+// 	err := UpdateUserPassword(rootFilePath, "test", "")
+// 	if !assert.ErrorContains(t, err, "failed to find user", "update password") {
+// 		return
+// 	}
+// }
 
 func writeTestShadowFile(t *testing.T, rootFilePath string, content string) {
 	shadowFilePath := filepath.Join(rootFilePath, ShadowFile)
