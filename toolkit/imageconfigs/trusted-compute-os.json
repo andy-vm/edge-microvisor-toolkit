@@ -53,7 +53,7 @@
                     "Name": "root",
                     "UID": "1",
                     "Password": "$5$Ds8ShVgAi2TdacjP$VHLtl4ghLSmjeaqDmwRUzcK1jGdxRQZ1LgOHLHLjuEB",
-                    "PasswordHashed": true
+                    "PasswordHashed": false
                 }
             ]
         }

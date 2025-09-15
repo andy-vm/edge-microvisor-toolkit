@@ -122,7 +122,7 @@
                 {
                     "Name": "root",
                     "Password": "$6$h06k1YSGP1nz$TVrHZZQS/rf2xo3.gb80GJKkkUzaylHPz/Ofvl/L5seczLeM98man/0zZoY4m.OEuvE2znG2jo909xvIv3FrL1",
-                    "PasswordHashed": true
+                    "PasswordHashed": false
                 },
                 {
                     "Name": "guest",

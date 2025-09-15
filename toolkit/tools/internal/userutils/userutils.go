@@ -114,7 +114,7 @@ func UpdateUserPassword(installRoot, username, hashedPassword string) error {
 		// build of sshd is configured to interpret the `!` in the shadow file to mean the user is fully disabled, even
 		// for ssh login. But it interprets `*` to mean that only password login is disabled but sshd public/private key
 		// login is fine.
-		hashedPassword = "*"
+		hashedPassword = ""
 	}
 
 	// Find the line that starts with "<user>:<password>:..."
