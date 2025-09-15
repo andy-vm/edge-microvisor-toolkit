@@ -26,7 +26,7 @@
                 "default": "kernel"
             },
             "KernelCommandLine": {
-                "ExtraCommandLine": "intel_pstate=disable rd.debug rd.udev.log_level=debug rd.timeout=0 systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on systemd.debug-shell=1 rd.memdebug=5 rd.live.debug=1 loglevel=7"
+                "ExtraCommandLine": "systemd.unit=emergency.target init=/bin/bash intel_pstate=disable rd.debug rd.udev.log_level=debug rd.timeout=0 systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on systemd.debug-shell=1 rd.memdebug=5 rd.live.debug=1 loglevel=7"
             },
             "AdditionalFiles": {
                 "../../out/tools/imager": "/installer/imager",
