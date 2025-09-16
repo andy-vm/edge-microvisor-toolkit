@@ -124,9 +124,9 @@ func InitBestEffort(lf *LogFlags) {
 	color := *lf.LogColor
 	path := *lf.LogFile
 
-	if level == "" {
-		level = defaultStderrLogLevel.String()
-	}
+	// if level == "" {
+	level = defaultStderrLogLevel.String()
+	// }
 
 	_, callerFilePath, _, ok := runtime.Caller(parentCallerLevel)
 	if !ok {

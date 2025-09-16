@@ -1,9 +1,2 @@
-mount | grep proc
 mount -t proc proc /proc
-ls /bin/bash
-ls /lib/systemd/systemd
-free -h
-ulimit -a
-ulimit -s unlimited
-ulimit -v unlimited
 /lib/systemd/systemd
