@@ -33,9 +33,9 @@
         "grep",
         "grub2-efi",
         "grub2-efi-binary",
-        "grub2-pc",
         "gzip",
         "haveged",
+        "iana-etc",
         "irqbalance",
         "libcap",
         "libgcc",
@@ -72,6 +72,11 @@
         "words",
         "xfsprogs",
         "xz",
+        "tboot",
+        "tpm2-tools",
+        "tpm2-tss",
+        "tpm-cryptsetup",
+        "intel-cmt-cat",
         "zlib"
     ]
 }
