@@ -66,6 +66,7 @@
         "systemd-networkd",
         "systemd-resolved",
         "systemd-udev",
+        "sudo",
         "tdnf",
         "tdnf-plugin-repogpgcheck",
         "util-linux",
