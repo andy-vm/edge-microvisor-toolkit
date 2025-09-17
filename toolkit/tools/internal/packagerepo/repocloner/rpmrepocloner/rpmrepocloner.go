@@ -865,7 +865,6 @@ func tdnfDownload(args ...string) (err error, retriable bool) {
 		unresolvedOutputSuffix = "available"
 	)
 
-	args = append(args, "--nogpgcheck", "--disableplugin=local")
 	stdout, stderr, err := shell.Execute("tdnf", args...)
 	logger.Log.Warningf("tdnf args %v err %v", args, err)
 	logger.Log.Debugf("stdout: %s", stdout)
