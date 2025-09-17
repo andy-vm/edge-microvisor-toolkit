@@ -1,5 +1,9 @@
 {
     "packages": [
+        "persistent-mount",
+        "systemd-boot",
+        "core-packages-base-image",
+        "initramfs",
         "pam",
         "audit",
         "attr",

@@ -26,7 +26,7 @@
                 "default": "kernel"
             },
             "KernelCommandLine": {
-                "ExtraCommandLine": "intel_pstate=disable rd.debug rd.udev.log_level=debug rd.timeout=0 systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on systemd.debug-shell=1 rd.memdebug=5 rd.live.debug=1 loglevel=7"
+                "ExtraCommandLine": "sysctl.vm.overcommit_memory=1 sysctl.kernel.panic=10 sysctl.kernel.panic_on_oops=1 sysctl.fs.inotify.max_user_instances=8192 rd.shell=0 rd.parallel=1 rd.timeout=2000 rd.emergency=reboot intel_pstate=disable rd.debug rd.udev.log_level=debug rd.timeout=0 systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M printk.devkmsg=on systemd.debug-shell=1 rd.memdebug=5 rd.live.debug=1 loglevel=7"
             },
             "AdditionalFiles": {
                 "../../out/tools/imager": "/installer/imager",
