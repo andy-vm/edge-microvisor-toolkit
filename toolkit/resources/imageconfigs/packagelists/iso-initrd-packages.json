@@ -40,7 +40,7 @@
         "libcap",
         "libgcc",
         "libstdc++",
-        "linux-firmware-qlogic",
+        "linux-firmware",
         "lvm2",
         "lua",
         "lz4",
