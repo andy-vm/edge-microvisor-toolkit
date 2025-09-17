@@ -58,7 +58,7 @@ const (
 	ColorFlagHelp = "Color setting for log terminal output."
 
 	defaultLogFileLevel   = logrus.DebugLevel
-	defaultStderrLogLevel = logrus.DebugLevel //logrus.InfoLevel
+	defaultStderrLogLevel = logrus.InfoLevel
 	parentCallerLevel     = 1
 	colorModeAuto         = "auto"
 	colorModeAlways       = "always"
@@ -124,9 +124,9 @@ func InitBestEffort(lf *LogFlags) {
 	color := *lf.LogColor
 	path := *lf.LogFile
 
-	// if level == "" {
-	level = defaultStderrLogLevel.String()
-	// }
+	if level == "" {
+		level = defaultStderrLogLevel.String()
+	}
 
 	_, callerFilePath, _, ok := runtime.Caller(parentCallerLevel)
 	if !ok {
