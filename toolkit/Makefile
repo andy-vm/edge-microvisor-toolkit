@@ -170,13 +170,13 @@ endif
 
 TOOLCHAIN_GPG_VALIDATION_KEYS ?= $(wildcard $(PROJECT_ROOT)/SPECS/edge-repos/INTEL-*-GPG-KEY) $(wildcard $(toolkit_root)/repos/INTEL-*-GPG-KEY)
 
-$(call shell_real_build_only, $(SCRIPTS_DIR)/toolchain/toolchain_update_git_submodule.sh)
-
 ######## COMMON MAKEFILE UTILITIES ########
 
 # Misc function defines
 # Variable prerequisite tracking
 include $(SCRIPTS_DIR)/utils.mk
+
+$(call shell_real_build_only, $(SCRIPTS_DIR)/toolchain/toolchain_update_git_submodule.sh)
 
 ######## REMAINING BUILD FLAGS ########
 
