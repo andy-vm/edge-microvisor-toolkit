@@ -88,9 +88,6 @@ Distribution:   Edge Microvisor Toolkit
 %ifnarch %{ix86} x86_64 %{arm} aarch64
 %global have_spice 0
 %endif
-%if 0%{?emt}
-%global have_spice 0
-%endif
 
 # Matches xen ExclusiveArch
 %global have_xen 0
