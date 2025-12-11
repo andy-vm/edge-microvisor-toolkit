@@ -1,3 +1,5 @@
+Distribution:   Edge Microvisor Toolkit
+Vendor:         Intel Corporation
 Name:           spice
 Version:        0.15.1
 Release:        8%{?dist}

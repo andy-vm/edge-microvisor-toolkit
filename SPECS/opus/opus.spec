@@ -1,5 +1,3 @@
-#global candidate rc2
-
 %if 0%{?fedora}
 %bcond_without mingw
 
@@ -9,14 +7,16 @@
 %bcond_with mingw
 %endif
 
+Distribution:   Edge Microvisor Toolkit
+Vendor:         Intel Corporation
 Name:     opus
 Version:  1.5.2
-Release:  %autorelease
+Release:  1%{?dist}
 Summary:  An audio codec for use in low-delay speech and audio communication
 License:  BSD-3-Clause AND BSD-2-Clause
 URL:      https://www.opus-codec.org/
 
-Source0:  https://ftp.osuosl.org/pub/xiph/releases/%{name}/%{name}-%{version}%{?candidate:-%{candidate}}.tar.gz
+Source0:  https://ftp.osuosl.org/pub/xiph/releases/%{name}/%{name}-%{version}.tar.gz
 
 BuildRequires: make
 BuildRequires: gcc
@@ -69,9 +69,7 @@ for Win64 target.
 %endif
 
 %prep
-%setup -q %{?candidate:-n %{name}-%{version}-%{candidate}}
-cp %{SOURCE1} .
-cp %{SOURCE2} .
+%setup -q
 
 %build
 autoreconf -ivf
@@ -149,4 +147,6 @@ make -C build_native check %{?_smp_mflags} V=1
 %endif
 
 %changelog
-%autochangelog
+* Mon Dec 08 2025 Andy <andy.peng@intel.com> - 1.5.2-1
+- Initial Edge Microvisor Toolkit import from Fedora 43 (license: MIT)
+- License verified.
