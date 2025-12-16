@@ -32,8 +32,8 @@ Patch3:         CVE-2024-45339.patch
 Patch4:         CVE-2025-22872.patch
 BuildRequires:  go-rpm-macros
 # https://github.com/caddyserver/caddy/commit/2028da4e74cd41f0f7f94222c6599da1a371d4b8
-BuildRequires:  golang >= 1.24.4
 BuildRequires:  golang < 1.25
+BuildRequires:  golang >= 1.24.9
 # dario.cat/mergo : BSD-3-Clause
 Provides:       bundled(golang(dario.cat/mergo)) = 1.0.1
 # filippo.io/edwards25519 : BSD-3-Clause
