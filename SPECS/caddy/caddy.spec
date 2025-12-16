@@ -3,7 +3,7 @@
 Summary:        Web server with automatic HTTPS
 Name:           caddy
 Version:        2.9.1
-Release:        13%{?dist}
+Release:        14%{?dist}
 Distribution:   Edge Microvisor Toolkit
 Vendor:         Intel Corporation
 # main source code is Apache-2.0
