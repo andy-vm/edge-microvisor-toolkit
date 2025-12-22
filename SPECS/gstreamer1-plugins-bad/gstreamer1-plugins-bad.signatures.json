@@ -1,0 +1,6 @@
+{
+ "Signatures": {
+  "openh264-add-license-file.patch": "2c902a34725e33d816a5232e0165e772a814a0c4bb0400b88d065ae78a2d3a36",
+  "gst-plugins-bad-1.26.5.tar.xz": "9890f262f3b2a9564dcb629e9eb697d77b93d1f71897eda1a8170b7dcfe73294"
+ }
+}

@@ -644,6 +644,9 @@ BuildRequires: spice-protocol
 BuildRequires: spice-server-devel
 BuildRequires: gstreamer1-devel
 BuildRequires: gstreamer1-plugins-base-devel
+BuildRequires: gstreamer1-plugins-bad-devel
+BuildRequires: gstreamer1-plugins-ugly-devel
+BuildRequires: gstreamer1-plugins-good-gtk
 %endif
 # VNC JPEG support
 BuildRequires: libjpeg-devel
