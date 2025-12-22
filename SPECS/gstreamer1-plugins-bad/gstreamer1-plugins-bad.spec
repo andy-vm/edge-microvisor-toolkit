@@ -24,7 +24,7 @@
 #global gitcommit  4ca3a22b6b33ad8be4383063e76f79c4d346535d
 #global shortcommit %(c=%{gitcommit}; echo ${c:0:5})
 
-Name:           gstreamer1-plugins-bad-free
+Name:           gstreamer1-plugins-bad
 Version:        1.26.5
 Release:        1%{?dist}
 Summary:        GStreamer streaming media framework "bad" plugins

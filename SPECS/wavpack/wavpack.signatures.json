@@ -1,0 +1,7 @@
+{
+ "Signatures": {
+  "wavpack-0001-fix-for-MinGW.patch": "c55979660240b110eb9be0999b6ca805d4cd6e3a359ae9d47c96f26298f395f2",
+  "wavpack-0002-We-compile-only-ANSI-C-sources.patch": "86d0302ee932d594871d88193d6b2485d987d47cccc084d2bc47e614323afd4d",
+  "wavpack-5.8.1.tar.bz2": "7bd540ed92d2d1bf412213858a9e4f1dfaf6d9a614f189b0622060a432e77bbf"
+ }
+}

@@ -1,0 +1,6 @@
+{
+ "Signatures": {
+  "speex-1.2.0-guard-against-invalid-channel-numbers.patch": "17fd4d9db2e91c8d638487c8a082585e43c2d36502f227116d5413a5d5b1a406",
+  "speex-1.2.0.tar.gz": "eaae8af0ac742dc7d542c9439ac72f1f385ce838392dc849cae4536af9210094"
+ }
+}
