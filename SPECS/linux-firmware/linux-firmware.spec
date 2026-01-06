@@ -1,7 +1,7 @@
 Summary:        Linux Firmware
 Name:           linux-firmware
 Version:        20250509
-Release:        4%{?dist}
+Release:        5%{?dist}
 License:        GPL+ AND GPLv2+ AND MIT AND Redistributable, no modification permitted
 Vendor:         Intel Corporation
 Distribution:   Edge Microvisor Toolkit
@@ -19,6 +19,7 @@ Requires:       %{name}-qlogic = %{version}-%{release}
 Requires:       %{name}-qualcomm = %{version}-%{release}
 Requires:       %{name}-iwlwifi = %{version}-%{release}
 Requires:       %{name}-ice = %{version}-%{release}
+Requires:       %{name}-ish = %{version}-%{release}
 Requires:       dracut
 BuildArch:      noarch
 
@@ -66,6 +67,12 @@ Summary:        Firmware for Intel Ethernet controller
 
 %description   ice
 Firmware for Intel Ethernet controller.
+
+%package       ish
+Summary:        Firmware for Intel ISH
+
+%description   ish
+Firmware for Intel ISH.
 
 %package       qat
 Summary:        Firmware for Intel QAT controller
@@ -175,6 +182,10 @@ dracut --force
 %defattr(-,root,root)
 %license WHENCE LICENSE.ice
 %{_firmwarepath}/intel/ice
+
+%files ish
+%defattr(-,root,root)
+%{_firmwarepath}/intel/ish
 
 %files qat
 %defattr(-,root,root)
