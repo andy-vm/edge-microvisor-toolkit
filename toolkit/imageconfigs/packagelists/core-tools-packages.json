@@ -1,5 +1,7 @@
 {
     "packages": [
+        "iptables",
+        "nftables",
         "dnf",
         "vim",
         "wget"
