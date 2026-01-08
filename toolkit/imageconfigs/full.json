@@ -52,7 +52,7 @@
                 "packagelists/kernel-drivers.json"
             ],
             "KernelCommandLine": {
-                "ExtraCommandLine": "console=ttyS0,115200n8 console=tty0 i915.force_probe=*",
+                "ExtraCommandLine": "console=ttyS0,115200n8 console=tty0 intel_idle.max_cstate=1 processor.max_cstate=1 i915.force_probe=*",
                 "SELinux": "permissive"
             },
             "KernelOptions": {
@@ -117,7 +117,7 @@
                 "packagelists/kernel-drivers.json"
             ],
             "KernelCommandLine": {
-                "ExtraCommandLine": "console=ttyS0,115200n8 console=tty0 i915.force_probe=*",
+                "ExtraCommandLine": "console=ttyS0,115200n8 console=tty0 intel_idle.max_cstate=1 processor.max_cstate=1 i915.force_probe=*",
                 "SELinux": "permissive"
             },
             "KernelOptions": {
