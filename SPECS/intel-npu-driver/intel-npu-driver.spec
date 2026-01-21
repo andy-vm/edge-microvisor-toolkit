@@ -47,7 +47,22 @@ mv npu_compiler_elf-* third_party/npu_compiler_elf
 sed -i '/add_subdirectory(googletest EXCLUDE_FROM_ALL)/s/^/#/' third_party/CMakeLists.txt
 sed -i '/add_subdirectory(yaml-cpp EXCLUDE_FROM_ALL)/s/^/#/' third_party/CMakeLists.txt
 
-echo -e "set(NPU_COMPILER_TAG npu_ud_2025_48_rc1)\nadd_custom_target(npu_compiler_source)" > compiler/compiler_source.cmake
+# echo -e "set(NPU_COMPILER_TAG npu_ud_2025_48_rc1)\nadd_custom_target(npu_compiler_source)" > compiler/compiler_source.cmake
+cat > compiler/compiler_source.cmake << 'EOF'
+if(DEFINED ENV{TARGET_DISTRO})
+  set(TARGET_DISTRO $ENV{TARGET_DISTRO})
+else()
+  set(TARGET_DISTRO ${CMAKE_SYSTEM_NAME})
+endif()
+set(NPU_COMPILER_TAG npu_ud_2025_48_rc1)
+set(OPENVINO_SOURCE_DIR "${CMAKE_CURRENT_BINARY_DIR}/src/openvino")
+set(NPU_COMPILER_OPENVINO_SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/src/npu_compiler_openvino)
+set(NPU_COMPILER_SOURCE_DIR "${CMAKE_CURRENT_BINARY_DIR}/src/npu_compiler")
+set(NPU_COMPILER_BUILD_DEPENDS npu_compiler_openvino_source)
+add_custom_target(npu_compiler_source)
+add_custom_target(npu_compiler_openvino_source)
+add_custom_target(openvino_source)
+EOF
 
 mkdir -p %{buildroot}/src/openvino
 tar xf %{SOURCE3} -C %{buildroot}/src/openvino
