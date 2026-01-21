@@ -89,6 +89,7 @@ sed -i 's/set(ENABLE_PROFILING_ITT_DEFAULT BASE)/set(ENABLE_PROFILING_ITT_DEFAUL
 rm -rf thirdparty/gtest thirdparty/gflags thirdparty/level-zero/level_zero third_party/itt_collector \
    thirdparty/pugixml third_party/telemetry
 tar xf %{SOURCE6}
+mkdir -p third_party/level_zero/level_zero
 mv level-zero-* third_party/level_zero/level_zero
 cd -
 
