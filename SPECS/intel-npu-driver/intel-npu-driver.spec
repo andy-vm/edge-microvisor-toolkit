@@ -47,7 +47,7 @@ mv npu_compiler_elf-* third_party/npu_compiler_elf
 sed -i '/add_subdirectory(googletest EXCLUDE_FROM_ALL)/s/^/#/' third_party/CMakeLists.txt
 sed -i '/add_subdirectory(yaml-cpp EXCLUDE_FROM_ALL)/s/^/#/' third_party/CMakeLists.txt
 
-sed -i '/^set(OPENVINO_CMAKE_ARGS$/a\    -DENABLE_PROFILING_ITT=OFF' compiler/openvino_build.cmake
+#sed -i '/^set(OPENVINO_CMAKE_ARGS$/a\    -DENABLE_PROFILING_ITT=OFF' compiler/openvino_build.cmake
 
 # echo -e "set(NPU_COMPILER_TAG npu_ud_2025_48_rc1)\nadd_custom_target(npu_compiler_source)" > compiler/compiler_source.cmake
 cat > compiler/compiler_source.cmake << 'EOF'
@@ -82,13 +82,17 @@ mkdir -p ./build/compiler/src/npu_compiler_openvino
 tar xf %{SOURCE5} -C ./build/compiler/src/npu_compiler_openvino --strip-components=1
 ls ./build/compiler/src/npu_compiler_openvino
 #rm -rf ./build/compiler/src/npu_compiler_openvino/thirdparty/ittapi
-sed -i 's/set(ENABLE_PROFILING_ITT_DEFAULT BASE)/set(ENABLE_PROFILING_ITT_DEFAULT OFF)/' ./build/compiler/src/npu_compiler_openvino/cmake/features.cmake
+cd ./build/compiler/src/npu_compiler_openvino
+sed -i 's/set(ENABLE_PROFILING_ITT_DEFAULT BASE)/set(ENABLE_PROFILING_ITT_DEFAULT OFF)/' cmake/features.cmake
+# thirdparty deps
+rm -rf thirdparty/gtest thirdparty/gflags thirdparty/level-zero third_party/itt_collector \
+   thirdparty/pugixml third_party/telemetry
+cd -
 
 %build
 cmake \
 	-B build -S . \
 	-DENABLE_VALIDATION_BUILD=OFF \
-    -DENABLE_PROFILING_ITT=OFF \
 	-DENABLE_NPU_COMPILER_BUILD=ON
 
 cmake --build build
