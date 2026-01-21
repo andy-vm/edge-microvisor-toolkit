@@ -85,6 +85,7 @@ ls ./build/compiler/src/npu_compiler_openvino
 cmake \
 	-B build -S . \
 	-DENABLE_VALIDATION_BUILD=OFF \
+    -DENABLE_PROFILING_ITT=OFF \
 	-DENABLE_NPU_COMPILER_BUILD=ON
 
 cmake --build build
