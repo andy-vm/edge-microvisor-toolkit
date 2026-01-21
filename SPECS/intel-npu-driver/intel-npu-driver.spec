@@ -75,11 +75,11 @@ git -C ./build/compiler/src/npu_compiler lfs install &&
     git -C ./build/compiler/src/npu_compiler/thirdparty/vpucostmodel lfs install &&
     git -C ./build/compiler/src/npu_compiler/thirdparty/vpucostmodel lfs pull
 ls ./build/compiler/src/npu_compiler
-#cd %{buildroot}
 
 mkdir -p ./build/compiler/src/npu_compiler_openvino
 tar xf %{SOURCE5} -C ./build/compiler/src/npu_compiler_openvino --strip-components=1
 ls ./build/compiler/src/npu_compiler_openvino
+rm -rf ./build/compiler/src/npu_compiler_openvino/thirdparty/ittapi
 
 %build
 cmake \
