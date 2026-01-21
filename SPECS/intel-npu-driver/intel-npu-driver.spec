@@ -12,6 +12,7 @@ Source2:	    https://github.com/openvinotoolkit/npu_compiler_elf/archive/9d91134
 Source3:        https://github.com/openvinotoolkit/openvino/archive/7a975177ff432c687e5619e8fb22e4bf265e48b7/openvino-7a97517.tar.gz
 Source4:        https://github.com/openvinotoolkit/npu_compiler/archive/a1ae54e94faea6f35566ef4ed03ee98156808306/npu_compiler-a1ae54e.tar.gz
 Source5:        https://github.com/openvinotoolkit/openvino/archive/5fb69ea158126752aa9d8aa5ee4d6f65a5b409b5/openvino-5fb69ea.tar.gz
+Source6:        https://github.com/oneapi-src/level-zero/archive/7ae9d18f888dd4a9960e230b138ecd915ea187ac/level-zero-7ae9d18.tar.gz
 
 ExclusiveArch:	x86_64
 
@@ -85,8 +86,10 @@ ls ./build/compiler/src/npu_compiler_openvino
 cd ./build/compiler/src/npu_compiler_openvino
 sed -i 's/set(ENABLE_PROFILING_ITT_DEFAULT BASE)/set(ENABLE_PROFILING_ITT_DEFAULT OFF)/' cmake/features.cmake
 # thirdparty deps
-rm -rf thirdparty/gtest thirdparty/gflags thirdparty/level-zero third_party/itt_collector \
+rm -rf thirdparty/gtest thirdparty/gflags thirdparty/level-zero/level_zero third_party/itt_collector \
    thirdparty/pugixml third_party/telemetry
+tar xf %{SOURCE6}
+mv level-zero-* third_party/level_zero/level_zero
 cd -
 
 %build
