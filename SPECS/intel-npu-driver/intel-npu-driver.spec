@@ -48,8 +48,6 @@ sed -i '/add_subdirectory(googletest EXCLUDE_FROM_ALL)/s/^/#/' third_party/CMake
 sed -i '/add_subdirectory(yaml-cpp EXCLUDE_FROM_ALL)/s/^/#/' third_party/CMakeLists.txt
 
 sed -i '/^set(OPENVINO_CMAKE_ARGS$/a\    -DENABLE_PROFILING_ITT=OFF' compiler/openvino_build.cmake
-cat compiler/openvino_build.cmake
-export ZE_INTEL_NPU_COMPILER_EXTRA_BUILD_FLAGS="ENABLE_PROFILING_ITT=\"OFF\""
 
 # echo -e "set(NPU_COMPILER_TAG npu_ud_2025_48_rc1)\nadd_custom_target(npu_compiler_source)" > compiler/compiler_source.cmake
 cat > compiler/compiler_source.cmake << 'EOF'
@@ -84,6 +82,7 @@ mkdir -p ./build/compiler/src/npu_compiler_openvino
 tar xf %{SOURCE5} -C ./build/compiler/src/npu_compiler_openvino --strip-components=1
 ls ./build/compiler/src/npu_compiler_openvino
 #rm -rf ./build/compiler/src/npu_compiler_openvino/thirdparty/ittapi
+sed -i 's/set(ENABLE_PROFILING_ITT_DEFAULT BASE)/set(ENABLE_PROFILING_ITT_DEFAULT OFF)/' ./build/compiler/src/npu_compiler_openvino/cmake/features.cmake
 
 %build
 cmake \
