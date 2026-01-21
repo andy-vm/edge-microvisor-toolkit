@@ -55,31 +55,31 @@ else()
   set(TARGET_DISTRO ${CMAKE_SYSTEM_NAME})
 endif()
 set(NPU_COMPILER_TAG npu_ud_2025_48_rc1)
-set(OPENVINO_SOURCE_DIR "${CMAKE_CURRENT_BINARY_DIR}/src/openvino")
-set(NPU_COMPILER_OPENVINO_SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/src/npu_compiler_openvino)
-set(NPU_COMPILER_SOURCE_DIR "${CMAKE_CURRENT_BINARY_DIR}/src/npu_compiler")
+set(OPENVINO_SOURCE_DIR "${CMAKE_CURRENT_BINARY_DIR}/compiler/src/openvino")
+set(NPU_COMPILER_OPENVINO_SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/compiler/src/npu_compiler_openvino)
+set(NPU_COMPILER_SOURCE_DIR "${CMAKE_CURRENT_BINARY_DIR}/compiler/src/npu_compiler")
 set(NPU_COMPILER_BUILD_DEPENDS npu_compiler_openvino_source)
 add_custom_target(npu_compiler_source)
 add_custom_target(npu_compiler_openvino_source)
 add_custom_target(openvino_source)
 EOF
 
-mkdir -p %{buildroot}/src/openvino
-tar xf %{SOURCE3} -C %{buildroot}/src/openvino --strip-components=1
-ls %{buildroot}/src/openvino
+mkdir -p %{buildroot}/compiler/src/openvino
+tar xf %{SOURCE3} -C %{buildroot}/compiler/src/openvino --strip-components=1
+ls %{buildroot}/compiler/src/openvino
 
-mkdir -p %{buildroot}/src/npu_compiler
-tar xf %{SOURCE4} -C %{buildroot}/src/npu_compiler --strip-components=1
-git -C %{buildroot}/src/npu_compiler lfs install &&
-    git -C %{buildroot}/src/npu_compiler lfs pull &&
-    git -C %{buildroot}/src/npu_compiler/thirdparty/vpucostmodel lfs install &&
-    git -C %{buildroot}/src/npu_compiler/thirdparty/vpucostmodel lfs pull
-ls %{buildroot}/src/npu_compiler
+mkdir -p %{buildroot}/compiler/src/npu_compiler
+tar xf %{SOURCE4} -C %{buildroot}/compiler/src/npu_compiler --strip-components=1
+git -C %{buildroot}/compiler/src/npu_compiler lfs install &&
+    git -C %{buildroot}/compiler/src/npu_compiler lfs pull &&
+    git -C %{buildroot}/compiler/src/npu_compiler/thirdparty/vpucostmodel lfs install &&
+    git -C %{buildroot}/compiler/src/npu_compiler/thirdparty/vpucostmodel lfs pull
+ls %{buildroot}/compiler/src/npu_compiler
 cd %{buildroot}
 
-mkdir -p %{buildroot}/src/npu_compiler_openvino
-tar xf %{SOURCE5} -C %{buildroot}/src/npu_compiler_openvino --strip-components=1
-ls %{buildroot}/src/npu_compiler_openvino
+mkdir -p %{buildroot}/compiler/src/npu_compiler_openvino
+tar xf %{SOURCE5} -C %{buildroot}/compiler/src/npu_compiler_openvino --strip-components=1
+ls %{buildroot}/compiler/src/npu_compiler_openvino
 
 %build
 cmake \
