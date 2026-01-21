@@ -62,6 +62,8 @@ cd %{buildroot}
 mkdir -p %{buildroot}/src/npu_compiler_openvino
 tar xf %{SOURCE5} -C %{buildroot}/src/npu_compiler_openvino
 
+echo "# Empty CMake file" > compiler/compiler_source.cmake
+
 %build
 cmake \
 	-B build -S . \
