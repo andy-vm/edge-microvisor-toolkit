@@ -47,6 +47,8 @@ mv npu_compiler_elf-* third_party/npu_compiler_elf
 sed -i '/add_subdirectory(googletest EXCLUDE_FROM_ALL)/s/^/#/' third_party/CMakeLists.txt
 sed -i '/add_subdirectory(yaml-cpp EXCLUDE_FROM_ALL)/s/^/#/' third_party/CMakeLists.txt
 
+echo "# Empty CMake file" > compiler/compiler_source.cmake
+
 mkdir -p %{buildroot}/src/openvino
 tar xf %{SOURCE3} -C %{buildroot}/src/openvino
 
@@ -61,8 +63,6 @@ cd %{buildroot}
 
 mkdir -p %{buildroot}/src/npu_compiler_openvino
 tar xf %{SOURCE5} -C %{buildroot}/src/npu_compiler_openvino
-
-echo "# Empty CMake file" > compiler/compiler_source.cmake
 
 %build
 cmake \
