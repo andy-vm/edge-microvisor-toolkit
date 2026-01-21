@@ -91,10 +91,14 @@ ls ./build/compiler/src/npu_compiler_openvino
 #rm -rf ./build/compiler/src/npu_compiler_openvino/thirdparty/ittapi
 cd ./build/compiler/src/npu_compiler_openvino
 sed -i 's/set(ENABLE_PROFILING_ITT_DEFAULT BASE)/set(ENABLE_PROFILING_ITT_DEFAULT OFF)/' cmake/features.cmake
-sed -i 's/ov_dependent_option (ENABLE_SYSTEM_LEVEL_ZERO "Enables use of system version of Level Zero" OFF/ov_dependent_option (ENABLE_SYSTEM_LEVEL_ZERO "Enables use of system version of Level Zero" ON/' cmake/features.cmake
-sed -i 's/ov_option (ENABLE_SYSTEM_PUGIXML "Enables use of system PugiXML" OFF/ov_option (ENABLE_SYSTEM_PUGIXML "Enables use of system PugiXML" ON/' cmake/features.cmake
-sed -i 's/set(ENABLE_SYSTEM_FLATBUFFERS_DEFAULT OFF/set(ENABLE_SYSTEM_FLATBUFFERS_DEFAULT ON/' cmake/features.cmake
-sed -i 's/ov_dependent_option (ENABLE_SYSTEM_PROTOBUF "Enables use of system Protobuf" OFF/ov_dependent_option (ENABLE_SYSTEM_PROTOBUF "Enables use of system Protobuf" ON/' cmake/features.cmake
+sed -i 's/ov_option (ENABLE_SYSTEM_PUGIXML "Enables use of system PugiXML" OFF)/ov_option (ENABLE_SYSTEM_PUGIXML "Enables use of system PugiXML" ON)/' cmake/features.cmake
+
+sed -i 's/set(ENABLE_SYSTEM_FLATBUFFERS_DEFAULT OFF)/set(ENABLE_SYSTEM_FLATBUFFERS_DEFAULT ON)/' cmake/features.cmake
+sed -i 's/"ENABLE_OV_TF_LITE_FRONTEND" OFF)/"ENABLE_OV_TF_LITE_FRONTEND" ON)/' cmake/features.cmake
+
+sed -i 's/"Enables use of system Protobuf" OFF/"Enables use of system Protobuf" ON/' cmake/features.cmake
+sed -i 's/"ENABLE_OV_ONNX_FRONTEND OR ENABLE_OV_PADDLE_FRONTEND OR ENABLE_OV_TF_FRONTEND" OFF)/"ENABLE_OV_ONNX_FRONTEND OR ENABLE_OV_PADDLE_FRONTEND OR ENABLE_OV_TF_FRONTEND" ON)/' cmake/features.cmake
+
 # thirdparty deps
 rm -rf thirdparty/gtest thirdparty/gflags thirdparty/level-zero/level_zero third_party/itt_collector \
    thirdparty/pugixml third_party/telemetry
