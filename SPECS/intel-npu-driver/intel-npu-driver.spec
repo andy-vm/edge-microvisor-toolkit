@@ -1,7 +1,7 @@
 Summary:	    Intel Neural Processing Unit Driver
 Name:		    intel-npu-driver
 Version:	    1.28.0
-Release:	    2%{?dist}
+Release:	    3%{?dist}
 License:	    MIT AND Apache-2.0
 Vendor:         Intel Corporation
 Distribution:   Edge Microvisor Toolkit
@@ -90,6 +90,8 @@ tar xf %{SOURCE5} -C ./build/compiler/src/npu_compiler_openvino --strip-componen
 ls ./build/compiler/src/npu_compiler_openvino
 #rm -rf ./build/compiler/src/npu_compiler_openvino/thirdparty/ittapi
 cd ./build/compiler/src/npu_compiler_openvino
+
+sed -i 's/set(ENABLE_SYSTEM_LIBS_DEFAULT OFF)/set(ENABLE_SYSTEM_LIBS_DEFAULT ON)/' cmake/features.cmake
 
 sed -i 's/set(ENABLE_PROFILING_ITT_DEFAULT BASE)/set(ENABLE_PROFILING_ITT_DEFAULT OFF)/' cmake/features.cmake
 sed -i 's/ov_option (ENABLE_SYSTEM_PUGIXML "Enables use of system PugiXML" OFF)/ov_option (ENABLE_SYSTEM_PUGIXML "Enables use of system PugiXML" ON)/' cmake/features.cmake
