@@ -64,22 +64,22 @@ add_custom_target(npu_compiler_openvino_source)
 add_custom_target(openvino_source)
 EOF
 
-mkdir -p %{buildroot}/build/compiler/src/openvino
-tar xf %{SOURCE3} -C %{buildroot}/build/compiler/src/openvino --strip-components=1
-ls %{buildroot}/build/compiler/src/openvino
+mkdir -p ./build/compiler/src/openvino
+tar xf %{SOURCE3} -C ./build/compiler/src/openvino --strip-components=1
+ls ./build/compiler/src/openvino
 
-mkdir -p %{buildroot}/build/compiler/src/npu_compiler
-tar xf %{SOURCE4} -C %{buildroot}/build/compiler/src/npu_compiler --strip-components=1
-git -C %{buildroot}/build/compiler/src/npu_compiler lfs install &&
-    git -C %{buildroot}/build/compiler/src/npu_compiler lfs pull &&
-    git -C %{buildroot}/build/compiler/src/npu_compiler/thirdparty/vpucostmodel lfs install &&
-    git -C %{buildroot}/build/compiler/src/npu_compiler/thirdparty/vpucostmodel lfs pull
-ls %{buildroot}/build/compiler/src/npu_compiler
-cd %{buildroot}
+mkdir -p ./build/compiler/src/npu_compiler
+tar xf %{SOURCE4} -C ./build/compiler/src/npu_compiler --strip-components=1
+git -C ./build/compiler/src/npu_compiler lfs install &&
+    git -C ./build/compiler/src/npu_compiler lfs pull &&
+    git -C ./build/compiler/src/npu_compiler/thirdparty/vpucostmodel lfs install &&
+    git -C ./build/compiler/src/npu_compiler/thirdparty/vpucostmodel lfs pull
+ls ./build/compiler/src/npu_compiler
+#cd %{buildroot}
 
-mkdir -p %{buildroot}/build/compiler/src/npu_compiler_openvino
-tar xf %{SOURCE5} -C %{buildroot}/build/compiler/src/npu_compiler_openvino --strip-components=1
-ls %{buildroot}/build/compiler/src/npu_compiler_openvino
+mkdir -p ./build/compiler/src/npu_compiler_openvino
+tar xf %{SOURCE5} -C ./build/compiler/src/npu_compiler_openvino --strip-components=1
+ls ./build/compiler/src/npu_compiler_openvino
 
 %build
 cmake \
