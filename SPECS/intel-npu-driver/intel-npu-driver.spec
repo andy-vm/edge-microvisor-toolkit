@@ -1,7 +1,7 @@
 Summary:	    Intel Neural Processing Unit Driver
 Name:		    intel-npu-driver
 Version:	    1.28.0
-Release:	    1%{?dist}
+Release:	    2%{?dist}
 License:	    MIT AND Apache-2.0
 Vendor:         Intel Corporation
 Distribution:   Edge Microvisor Toolkit
@@ -9,6 +9,9 @@ URL:		    https://github.com/intel/linux-npu-driver
 Source0:	    %{url}/archive/refs/tags/v%{version}.tar.gz#/%{name}-v%{version}.tar.gz
 Source1:	    https://github.com/intel/level-zero-npu-extensions/archive/61e4aeb00afd2a5b6955986269eed3a713c7b562/level-zero-npu-extensions-61e4aeb.tar.gz
 Source2:	    https://github.com/openvinotoolkit/npu_compiler_elf/archive/9d91134722e70bf52297adaeb221a0be8e408b14/npu_compiler_elf-9d91134.tar.gz
+Source3:        https://github.com/openvinotoolkit/openvino/archive/7a975177ff432c687e5619e8fb22e4bf265e48b7/openvino-7a97517.tar.gz
+Source4:        https://github.com/openvinotoolkit/npu_compiler/archive/a1ae54e94faea6f35566ef4ed03ee98156808306/npu_compiler-a1ae54e.tar.gz
+Source5:        https://github.com/openvinotoolkit/openvino/archive/5fb69ea158126752aa9d8aa5ee4d6f65a5b409b5/openvino-5fb69ea.tar.gz
 
 ExclusiveArch:	x86_64
 
@@ -43,6 +46,21 @@ mv npu_compiler_elf-* third_party/npu_compiler_elf
 
 sed -i '/add_subdirectory(googletest EXCLUDE_FROM_ALL)/s/^/#/' third_party/CMakeLists.txt
 sed -i '/add_subdirectory(yaml-cpp EXCLUDE_FROM_ALL)/s/^/#/' third_party/CMakeLists.txt
+
+mkdir -p %{buildroot}/src/openvino
+tar xf %{SOURCE3} -C %{buildroot}/src/openvino
+
+mkdir -p %{buildroot}/src/npu_compiler
+tar xf %{SOURCE4} -C %{buildroot}/src/npu_compiler
+git -C %{buildroot}/src/npu_compiler lfs install &&
+    git -C %{buildroot}/src/npu_compiler lfs pull &&
+    git -C %{buildroot}/src/npu_compiler/thirdparty/vpucostmodel lfs install &&
+    git -C %{buildroot}/src/npu_compiler/thirdparty/vpucostmodel lfs pull
+
+cd %{buildroot}
+
+mkdir -p %{buildroot}/src/npu_compiler_openvino
+tar xf %{SOURCE5} -C %{buildroot}/src/npu_compiler_openvino
 
 %build
 cmake \
