@@ -66,6 +66,7 @@ EOF
 
 mkdir -p %{buildroot}/src/openvino
 tar xf %{SOURCE3} -C %{buildroot}/src/openvino --strip-components=1
+ls %{buildroot}/src/openvino
 
 mkdir -p %{buildroot}/src/npu_compiler
 tar xf %{SOURCE4} -C %{buildroot}/src/npu_compiler --strip-components=1
@@ -73,11 +74,12 @@ git -C %{buildroot}/src/npu_compiler lfs install &&
     git -C %{buildroot}/src/npu_compiler lfs pull &&
     git -C %{buildroot}/src/npu_compiler/thirdparty/vpucostmodel lfs install &&
     git -C %{buildroot}/src/npu_compiler/thirdparty/vpucostmodel lfs pull
-
+ls %{buildroot}/src/npu_compiler
 cd %{buildroot}
 
 mkdir -p %{buildroot}/src/npu_compiler_openvino
 tar xf %{SOURCE5} -C %{buildroot}/src/npu_compiler_openvino --strip-components=1
+ls %{buildroot}/src/npu_compiler_openvino
 
 %build
 cmake \
