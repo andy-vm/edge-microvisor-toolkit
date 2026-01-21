@@ -21,6 +21,7 @@ BuildRequires:	libudev-devel
 BuildRequires:	intel-level-zero-devel
 BuildRequires:	openssl-devel
 BuildRequires:	yaml-cpp-devel
+BuildRequires:	build-essential git git-lfs python3
 
 Requires:	intel-level-zero
 
