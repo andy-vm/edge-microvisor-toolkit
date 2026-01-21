@@ -90,6 +90,7 @@ tar xf %{SOURCE5} -C ./build/compiler/src/npu_compiler_openvino --strip-componen
 ls ./build/compiler/src/npu_compiler_openvino
 #rm -rf ./build/compiler/src/npu_compiler_openvino/thirdparty/ittapi
 cd ./build/compiler/src/npu_compiler_openvino
+
 sed -i 's/set(ENABLE_PROFILING_ITT_DEFAULT BASE)/set(ENABLE_PROFILING_ITT_DEFAULT OFF)/' cmake/features.cmake
 sed -i 's/ov_option (ENABLE_SYSTEM_PUGIXML "Enables use of system PugiXML" OFF)/ov_option (ENABLE_SYSTEM_PUGIXML "Enables use of system PugiXML" ON)/' cmake/features.cmake
 
@@ -105,6 +106,10 @@ rm -rf thirdparty/gtest thirdparty/gflags thirdparty/level-zero/level_zero third
 #tar xf %{SOURCE6}
 #mkdir -p third_party/level_zero/level_zero
 #mv level-zero-* third_party/level_zero/level_zero
+cd -
+
+mkdir ./build/compiler/src/npu_compiler_openvino/build && cd ./build/compiler/src/npu_compiler_openvino/build
+cmake -DENABLE_SYSTEM_PUGIXML=ON -DENABLE_SYSTEM_SNAPPY=ON -DENABLE_SYSTEM_PROTOBUF=ON ..
 cd -
 
 %build
