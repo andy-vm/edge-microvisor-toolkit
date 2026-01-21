@@ -1,5 +1,8 @@
 {
   "Signatures": {
+    "npu_compiler-a1ae54e.tar.gz": "4555ead2c6305cef2ff7ef5289f3a03805d4ccc084b09988713123f1ee9b27fb",
+    "openvino-5fb69ea.tar.gz": "38f562944536f4d29018a386804c2043d5562f493c52eb574abc00294bb6cd8e",
+    "openvino-7a97517.tar.gz": "52bbf9ac263398d6fc1f972d38ac1c529158a15a6419552ead9978209b26c85a",
     "npu_compiler_elf-9d91134.tar.gz": "6ecef965047717329b8868b4fc8c0e3e2593e26086334026f9fd36c83723dab9",
     "level-zero-npu-extensions-61e4aeb.tar.gz": "ccfd713b62700cf82476ee550c269cb5fb7edad70e96e7e0f4f6d7888f64642c",
     "intel-npu-driver-v1.28.0.tar.gz": "5621e6a3b1d1cbdf96bb771bc35c79af67091603344b5ab0603b699589cc3d4c"
