@@ -46,7 +46,8 @@ sed -i '/add_subdirectory(yaml-cpp EXCLUDE_FROM_ALL)/s/^/#/' third_party/CMakeLi
 %build
 cmake \
 	-B build -S . \
-	-DENABLE_VALIDATION_BUILD=OFF \
+	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+	-DUSE_SYSTEM_LIBRARIES=ON \
 	-DENABLE_NPU_COMPILER_BUILD=OFF
 
 cmake --build build
