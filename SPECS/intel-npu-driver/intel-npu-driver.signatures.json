@@ -1,5 +1,6 @@
 {
   "Signatures": {
+    "protobuf-f0dc78d.tar.gz": "d594b561fb41bf243233d8f411c7f2b7d913e5c9c1be4ca439baf7e48384c893",
     "gflags-e171aa2.tar.gz": "b20f58e7f210ceb0e768eb1476073d0748af9b19dfbbf53f4fd16e3fb49c5ac8",
     "xbyak-0d67fd1.tar.gz": "18aa05ac8e4bd5f5cb52c5481b86ba02cac395ad8cdbec6fe5acac94ad546dc8",
     "flatbuffers-595bf00.tar.gz": "987300083ec1f1b095d5596ef8fb657ba46c45d786bc866a5e9029d7590a5e48",

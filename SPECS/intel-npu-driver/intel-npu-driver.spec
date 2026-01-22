@@ -16,6 +16,7 @@ Source6:        https://github.com/oneapi-src/level-zero/archive/7ae9d18f888dd4a
 Source7:        https://github.com/google/flatbuffers/archive/595bf0007ab1929570c7671f091313c8fc20644e/flatbuffers-595bf00.tar.gz
 Source8:        https://github.com/gflags/gflags/archive/e171aa2d15ed9eb17054558e0b3a6a413bb01067/gflags-e171aa2.tar.gz
 Source9:        https://github.com/herumi/xbyak/archive/0d67fd1530016b7c56f3cd74b3fca920f4c3e2b4/xbyak-0d67fd1.tar.gz
+Source10:       https://github.com/protocolbuffers/protobuf/archive/f0dc78d7e6e331b8c6bb2d5283e06aa26883ca7c/protobuf-f0dc78d.tar.gz
 
 ExclusiveArch:	x86_64
 
@@ -110,8 +111,8 @@ sed -i 's/"Enables use of system version of Level Zero" OFF/"Enables use of syst
 sed -i 's/"ENABLE_INTEL_GPU" OFF)/"ENABLE_INTEL_GPU" ON)/' cmake/features.cmake
 
 # thirdparty deps
-rm -rf thirdparty/gtest thirdparty/gflags/gflags thirdparty/level-zero/level_zero third_party/itt_collector \
-   thirdparty/pugixml thirdparty/telemetry thirdparty/flatbuffers/flatbuffers thirdparty/xbyak
+rm -rf thirdparty/gtest thirdparty/gflags/gflags thirdparty/level-zero/level_zero thirdparty/itt_collector \
+   thirdparty/pugixml thirdparty/telemetry thirdparty/flatbuffers/flatbuffers thirdparty/xbyak thirdparty/protobuf/protobuf
 tar xf %{SOURCE6}
 mv level-zero-* thirdparty/level_zero/level_zero
 ls thirdparty/level_zero/level_zero
@@ -124,6 +125,9 @@ ls thirdparty/gflags/gflags
 tar xf %{SOURCE9}
 mv xbyak-* thirdparty/xbyak
 ls thirdparty/xbyak
+tar xf %{SOURCE10}
+mv protobuf-* thirdparty/protobuf/protobuf
+ls thirdparty/protobuf/protobuf
 cd -
 
 mkdir -p ./build/compiler/src/npu_compiler_openvino/build && cd ./build/compiler/src/npu_compiler_openvino/build
