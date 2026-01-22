@@ -115,6 +115,7 @@ sed -i 's/ov_download_tbb()/#ov_download_tbb()/' src/cmake/ov_parallel.cmake
 
 # Disable Python bindings by removing the subdirectory
 sed -i '/add_subdirectory(python)/s/^/#/' src/bindings/CMakeLists.txt
+cat src/bindings/CMakeLists.txt
 
 # Disable yaml-cpp bundled build in intel_npu plugin
 sed -i '/add_subdirectory(yaml-cpp/s/^/#/' src/plugins/intel_npu/thirdparty/CMakeLists.txt
@@ -152,10 +153,13 @@ mkdir -p ./build/compiler/src/npu_compiler_openvino/build && cd ./build/compiler
 cmake -DENABLE_SYSTEM_PUGIXML=ON -DENABLE_INTEL_GPU=OFF -DENABLE_INTEL_CPU=OFF -DENABLE_SAMPLES=OFF \
    -DENABLE_SYSTEM_LIBS_DEFAULT=ON -DENABLE_PROFILING_ITT=OFF -DENABLE_SYSTEM_FLATBUFFERS=OFF \
    -DENABLE_SYSTEM_LEVEL_ZERO=ON -DENABLE_SYSTEM_SNAPPY=ON -DENABLE_SYSTEM_PROTOBUF=OFF \
-   -DENABLE_SYSTEM_TBB=ON -DENABLE_INTEL_GPU_COMMON=OFF -DENABLE_JS=OFF -DENABLE_PYTHON=OFF ..
+   -DENABLE_SYSTEM_TBB=ON -DENABLE_INTEL_GPU_COMMON=OFF -DENABLE_JS=OFF -DENABLE_PYTHON=OFF -DENABLE_WHEEL=OFF ..
 cd -
 
 %build
+# Set TBB_DIR to help CMake find system TBB
+export TBB_DIR=%{_libdir}/cmake/TBB
+
 cmake \
 	-B build -S . \
 	-DENABLE_VALIDATION_BUILD=OFF \
