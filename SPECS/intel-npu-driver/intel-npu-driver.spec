@@ -29,8 +29,7 @@ BuildRequires:  pugixml-devel
 BuildRequires:	snappy-devel
 BuildRequires:  protobuf-compiler
 BuildRequires:  protobuf-devel
-BuildRequires:  flatbuffers-devel
-BuildRequires:  flatbuffers-compiler
+BuildRequires:  flatbuffers
 BuildRequires:	build-essential git git-lfs python3
 
 Requires:	intel-level-zero
@@ -110,7 +109,7 @@ rm -rf thirdparty/gtest thirdparty/gflags thirdparty/level-zero/level_zero third
 #mv level-zero-* third_party/level_zero/level_zero
 cd -
 
-mkdir ./build/compiler/src/npu_compiler_openvino/build && cd ./build/compiler/src/npu_compiler_openvino/build
+mkdir -p ./build/compiler/src/npu_compiler_openvino/build && cd ./build/compiler/src/npu_compiler_openvino/build
 cmake -DENABLE_SYSTEM_PUGIXML=ON -DENABLE_SYSTEM_SNAPPY=ON -DENABLE_SYSTEM_PROTOBUF=ON ..
 cd -
 
