@@ -147,6 +147,9 @@ sed -i 's/"ENABLE_OV_ONNX_FRONTEND OR ENABLE_OV_PADDLE_FRONTEND OR ENABLE_OV_TF_
 
 sed -i 's/"Enables use of system version of Level Zero" OFF/"Enables use of system version of Level Zero" ON/' cmake/features.cmake
 
+# Fix level-zero-ext include path
+sed -i '/ov_developer_package_export_targets(TARGET level-zero-ext/i target_include_directories(level-zero-ext INTERFACE "${CMAKE_SOURCE_DIR}/../../../../third_party/level-zero-npu-extensions")' src/plugins/intel_npu/src/utils/src/zero/CMakeLists.txt
+
 # Force system TBB usage by commenting out TBB download
 sed -i 's/ov_download_tbb()/#ov_download_tbb()/' src/cmake/ov_parallel.cmake
 
@@ -194,8 +197,7 @@ mkdir -p ./build/compiler/src/npu_compiler_openvino/build && cd ./build/compiler
 cmake -DENABLE_SYSTEM_PUGIXML=ON -DENABLE_INTEL_GPU=OFF -DENABLE_INTEL_CPU=OFF -DENABLE_SAMPLES=OFF \
    -DENABLE_SYSTEM_LIBS_DEFAULT=ON -DENABLE_PROFILING_ITT=OFF -DENABLE_SYSTEM_FLATBUFFERS=OFF \
    -DENABLE_SYSTEM_LEVEL_ZERO=ON -DENABLE_SYSTEM_SNAPPY=ON -DENABLE_SYSTEM_PROTOBUF=OFF \
-   -DENABLE_SYSTEM_TBB=ON -DENABLE_INTEL_GPU_COMMON=OFF -DENABLE_JS=OFF -DENABLE_PYTHON=OFF -DENABLE_WHEEL=OFF \
-   -DCMAKE_CXX_FLAGS="-I$PWD/../../../../../third_party/level-zero-npu-extensions" ..
+   -DENABLE_SYSTEM_TBB=ON -DENABLE_INTEL_GPU_COMMON=OFF -DENABLE_JS=OFF -DENABLE_PYTHON=OFF -DENABLE_WHEEL=OFF ..
 cd -
 
 %build
