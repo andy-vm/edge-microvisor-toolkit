@@ -60,16 +60,16 @@ Header files and shared object symlinks for the Threading Building
 Blocks (TBB) C++ libraries.
 
 
-%package doc
-Summary: The Threading Building Blocks documentation
-%ifarch %{ix86}
-# https://bugzilla.redhat.com/show_bug.cgi?id=2174300
-Conflicts: %{name}-doc.x86_64
-%endif
-
-%description doc
-PDF documentation for the user of the Threading Building Block (TBB)
-C++ library.
+# %package doc
+# Summary: The Threading Building Blocks documentation
+# %ifarch %{ix86}
+# # https://bugzilla.redhat.com/show_bug.cgi?id=2174300
+# Conflicts: %{name}-doc.x86_64
+# %endif
+# 
+# %description doc
+# PDF documentation for the user of the Threading Building Block (TBB)
+# C++ library.
 
 
 %package -n python3-%{name}
@@ -165,8 +165,8 @@ ctest --output-on-failure --force-new-ctest-process
 %{_libdir}/cmake/TBB/
 %{_libdir}/pkgconfig/*.pc
 
-%files doc
-%doc getting-started html
+# %files doc
+# %doc getting-started html
 
 %files -n python3-%{name}
 %doc python/README.md
