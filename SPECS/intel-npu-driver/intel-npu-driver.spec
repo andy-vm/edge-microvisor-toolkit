@@ -114,9 +114,9 @@ mv npu-nn-cost-model-* thirdparty/vpucostmodel
 
 cd -
 
-mkdir -p ./build/compiler/src/npu_compiler/build && cd ./build/compiler/src/npu_compiler/build
-cmake -DENABLE_PREBUILT_LLVM_MLIR_LIBS=ON ..
-cd -
+# mkdir -p ./build/compiler/src/npu_compiler/build && cd ./build/compiler/src/npu_compiler/build
+# cmake -DENABLE_PREBUILT_LLVM_MLIR_LIBS=ON ..
+# cd -
 
 mkdir -p ./build/compiler/src/npu_compiler_openvino
 tar xf %{SOURCE5} -C ./build/compiler/src/npu_compiler_openvino --strip-components=1
