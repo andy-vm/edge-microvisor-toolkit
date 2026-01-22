@@ -109,15 +109,15 @@ sed -i 's/"ENABLE_INTEL_GPU" OFF)/"ENABLE_INTEL_GPU" ON)/' cmake/features.cmake
 
 # thirdparty deps
 rm -rf thirdparty/gtest thirdparty/gflags/gflags thirdparty/level-zero/level_zero third_party/itt_collector \
-   thirdparty/pugixml third_party/telemetry thirdparty/flatbuffers/flatbuffers
+   thirdparty/pugixml thirdparty/telemetry thirdparty/flatbuffers/flatbuffers
 tar xf %{SOURCE6}
-#mkdir -p third_party/level_zero/level_zero
-mv level-zero-* third_party/level_zero/level_zero
-ls third_party/level_zero/level_zero
+#mkdir -p thirdparty/level_zero/level_zero
+mv level-zero-* thirdparty/level_zero/level_zero
+ls thirdparty/level_zero/level_zero
 tar xf %{SOURCE7}
-#mkdir -p third_party/flatbuffers/flatbuffers
-mv flatbuffers-* third_party/flatbuffers/flatbuffers
-ls third_party/flatbuffers/flatbuffers
+#mkdir -p thirdparty/flatbuffers/flatbuffers
+mv flatbuffers-* thirdparty/flatbuffers/flatbuffers
+ls thirdparty/flatbuffers/flatbuffers
 cd -
 
 mkdir -p ./build/compiler/src/npu_compiler_openvino/build && cd ./build/compiler/src/npu_compiler_openvino/build
