@@ -113,6 +113,7 @@ sed -i 's/"ENABLE_INTEL_GPU" OFF)/"ENABLE_INTEL_GPU" ON)/' cmake/features.cmake
 
 # Disable yaml-cpp bundled build in intel_npu plugin
 sed -i '/add_subdirectory(yaml-cpp/s/^/#/' src/plugins/intel_npu/thirdparty/CMakeLists.txt
+sed -i '/target_compile_options(yaml-cpp/s/^/#/' src/plugins/intel_npu/thirdparty/CMakeLists.txt
 
 # thirdparty deps
 rm -rf thirdparty/gtest thirdparty/gflags/gflags thirdparty/level-zero/level_zero thirdparty/itt_collector \
@@ -146,7 +147,7 @@ mkdir -p ./build/compiler/src/npu_compiler_openvino/build && cd ./build/compiler
 cmake -DENABLE_SYSTEM_PUGIXML=ON -DENABLE_INTEL_GPU=OFF -DENABLE_INTEL_CPU=OFF -DENABLE_SAMPLES=OFF \
    -DENABLE_SYSTEM_LIBS_DEFAULT=ON -DENABLE_PROFILING_ITT=OFF -DENABLE_SYSTEM_FLATBUFFERS=OFF \
    -DENABLE_SYSTEM_LEVEL_ZERO=ON -DENABLE_SYSTEM_SNAPPY=ON -DENABLE_SYSTEM_PROTOBUF=OFF \
-   -DENABLE_SYSTEM_TBB=ON ..
+   -DENABLE_SYSTEM_TBB=ON -DENABLE_INTEL_GPU_COMMON=OFF ..
 cd -
 
 %build
