@@ -59,7 +59,8 @@ mv npu_compiler_elf-* third_party/npu_compiler_elf
 sed -i '/add_subdirectory(googletest EXCLUDE_FROM_ALL)/s/^/#/' third_party/CMakeLists.txt
 sed -i '/add_subdirectory(yaml-cpp EXCLUDE_FROM_ALL)/s/^/#/' third_party/CMakeLists.txt
 
-#sed -i '/^set(OPENVINO_CMAKE_ARGS$/a\    -DENABLE_PROFILING_ITT=OFF' compiler/openvino_build.cmake
+# Inject cmake arguments to disable Python, JS and use system TBB in the npu_compiler OpenVINO build
+sed -i '/^set(OPENVINO_CMAKE_ARGS$/a\    -DENABLE_SYSTEM_TBB=ON\n    -DENABLE_PYTHON=OFF\n    -DENABLE_JS=OFF' compiler/openvino_build.cmake
 
 # echo -e "set(NPU_COMPILER_TAG npu_ud_2025_48_rc1)\nadd_custom_target(npu_compiler_source)" > compiler/compiler_source.cmake
 cat > compiler/compiler_source.cmake << 'EOF'
@@ -152,14 +153,10 @@ cmake -DENABLE_SYSTEM_PUGIXML=ON -DENABLE_INTEL_GPU=OFF -DENABLE_INTEL_CPU=OFF -
 cd -
 
 %build
-# Set TBB_DIR to help CMake find system TBB
-export TBB_DIR=%{_libdir}/cmake/TBB
-
 cmake \
 	-B build -S . \
 	-DENABLE_VALIDATION_BUILD=OFF \
-	-DENABLE_NPU_COMPILER_BUILD=ON \
-	-DOPENVINO_CMAKE_ARGS="-DENABLE_SYSTEM_TBB=ON;-DENABLE_PYTHON=OFF;-DENABLE_JS=OFF;-DENABLE_SYSTEM_PUGIXML=ON;-DENABLE_INTEL_GPU=OFF;-DENABLE_INTEL_CPU=OFF;-DENABLE_SAMPLES=OFF;-DENABLE_SYSTEM_LIBS_DEFAULT=ON;-DENABLE_PROFILING_ITT=OFF;-DENABLE_SYSTEM_FLATBUFFERS=OFF;-DENABLE_SYSTEM_LEVEL_ZERO=ON;-DENABLE_SYSTEM_SNAPPY=ON;-DENABLE_SYSTEM_PROTOBUF=OFF;-DENABLE_INTEL_GPU_COMMON=OFF;-DENABLE_JS=OFF;-DTBB_DIR=%{_libdir}/cmake/TBB"
+	-DENABLE_NPU_COMPILER_BUILD=ON
 
 cmake --build build
 
