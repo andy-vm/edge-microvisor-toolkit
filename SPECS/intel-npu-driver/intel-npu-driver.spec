@@ -30,6 +30,8 @@ BuildRequires:  pugixml-devel
 BuildRequires:	snappy-devel
 BuildRequires:  protobuf-compiler
 BuildRequires:  protobuf-devel
+BuildRequires:  ocl-icd-devel
+BuildRequires:  opencl-headers
 BuildRequires:	build-essential git git-lfs python3
 
 Requires:	intel-level-zero
@@ -101,21 +103,26 @@ sed -i 's/"ENABLE_OV_TF_LITE_FRONTEND" OFF)/"ENABLE_OV_TF_LITE_FRONTEND" ON)/' c
 sed -i 's/"Enables use of system Protobuf" OFF/"Enables use of system Protobuf" ON/' cmake/features.cmake
 sed -i 's/"ENABLE_OV_ONNX_FRONTEND OR ENABLE_OV_PADDLE_FRONTEND OR ENABLE_OV_TF_FRONTEND" OFF)/"ENABLE_OV_ONNX_FRONTEND OR ENABLE_OV_PADDLE_FRONTEND OR ENABLE_OV_TF_FRONTEND" ON)/' cmake/features.cmake
 
+sed -i 's/"Enables use of system version of Level Zero" OFF/"Enables use of system version of Level Zero" ON/' cmake/features.cmake
+
+sed -i 's/"ENABLE_INTEL_GPU" OFF)/"ENABLE_INTEL_GPU" ON)/' cmake/features.cmake
+
 # thirdparty deps
-rm -rf thirdparty/gtest thirdparty/gflags thirdparty/level-zero/level_zero third_party/itt_collector \
+rm -rf thirdparty/gtest thirdparty/gflags/gflags thirdparty/level-zero/level_zero third_party/itt_collector \
    thirdparty/pugixml third_party/telemetry thirdparty/flatbuffers/flatbuffers
 tar xf %{SOURCE6}
-mkdir -p third_party/level_zero/level_zero
+#mkdir -p third_party/level_zero/level_zero
 mv level-zero-* third_party/level_zero/level_zero
 ls third_party/level_zero/level_zero
 tar xf %{SOURCE7}
-mkdir -p third_party/flatbuffers/flatbuffers
+#mkdir -p third_party/flatbuffers/flatbuffers
 mv flatbuffers-* third_party/flatbuffers/flatbuffers
 ls third_party/flatbuffers/flatbuffers
 cd -
 
 mkdir -p ./build/compiler/src/npu_compiler_openvino/build && cd ./build/compiler/src/npu_compiler_openvino/build
-cmake -DENABLE_SYSTEM_PUGIXML=ON -DENABLE_SYSTEM_SNAPPY=ON -DENABLE_SYSTEM_PROTOBUF=ON ..
+cmake -DENABLE_SYSTEM_PUGIXML=ON -DENABLE_INTEL_GPU=OFF -DENABLE_INTEL_CPU=OFF -DENABLE_SAMPLES=OFF \
+   -DENABLE_SYSTEM_LEVEL_ZERO=ON -DENABLE_SYSTEM_SNAPPY=ON -DENABLE_SYSTEM_PROTOBUF=ON ..
 cd -
 
 %build
