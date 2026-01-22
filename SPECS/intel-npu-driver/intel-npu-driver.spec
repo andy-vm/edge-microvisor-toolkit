@@ -17,6 +17,8 @@ Source7:        https://github.com/google/flatbuffers/archive/595bf0007ab1929570
 Source8:        https://github.com/gflags/gflags/archive/e171aa2d15ed9eb17054558e0b3a6a413bb01067/gflags-e171aa2.tar.gz
 Source9:        https://github.com/herumi/xbyak/archive/0d67fd1530016b7c56f3cd74b3fca920f4c3e2b4/xbyak-0d67fd1.tar.gz
 Source10:       https://github.com/protocolbuffers/protobuf/archive/f0dc78d7e6e331b8c6bb2d5283e06aa26883ca7c/protobuf-f0dc78d.tar.gz
+source11:       https://github.com/onnx/onnx/archive/b8baa8446686496da4cc8fda09f2b6fe65c2a02c/onnx-b8baa84.tar.gz
+source12:       https://github.com/nlohmann/json/archive/9cca280a4d0ccf0c08f47a99aa71d1b0e52f8d03/json-9cca280.tar.gz
 
 ExclusiveArch:	x86_64
 
@@ -112,7 +114,9 @@ sed -i 's/"ENABLE_INTEL_GPU" OFF)/"ENABLE_INTEL_GPU" ON)/' cmake/features.cmake
 
 # thirdparty deps
 rm -rf thirdparty/gtest thirdparty/gflags/gflags thirdparty/level-zero/level_zero thirdparty/itt_collector \
-   thirdparty/pugixml thirdparty/telemetry thirdparty/flatbuffers/flatbuffers thirdparty/xbyak thirdparty/protobuf/protobuf
+   thirdparty/pugixml thirdparty/telemetry thirdparty/flatbuffers/flatbuffers thirdparty/xbyak \
+   thirdparty/protobuf/protobuf thirdparty/onnx/onnx thirdparty/json/nlohmann_json
+
 tar xf %{SOURCE6}
 mv level-zero-* thirdparty/level_zero/level_zero
 ls thirdparty/level_zero/level_zero
@@ -128,6 +132,12 @@ ls thirdparty/xbyak
 tar xf %{SOURCE10}
 mv protobuf-* thirdparty/protobuf/protobuf
 ls thirdparty/protobuf/protobuf
+tar xf %{SOURCE11}
+mv onnx-* thirdparty/onnx/onnx
+ls thirdparty/onnx/onnx
+tar xf %{SOURCE12}
+mv json-* thirdparty/json/nlohmann_json
+ls thirdparty/json/nlohmann_json
 cd -
 
 mkdir -p ./build/compiler/src/npu_compiler_openvino/build && cd ./build/compiler/src/npu_compiler_openvino/build

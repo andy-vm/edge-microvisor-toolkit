@@ -1,5 +1,7 @@
 {
   "Signatures": {
+    "onnx-b8baa84.tar.gz": "b741da9ecd0021df2d5bcd5ee73c5b9d88f8d870df7b489fa4b15ef6951e9a13",
+    "json-9cca280.tar.gz": "0dbc5e40a01ff142e7e68c03e85247a4dcede2f592d12d3677dee3664d17975a",
     "protobuf-f0dc78d.tar.gz": "d594b561fb41bf243233d8f411c7f2b7d913e5c9c1be4ca439baf7e48384c893",
     "gflags-e171aa2.tar.gz": "b20f58e7f210ceb0e768eb1476073d0748af9b19dfbbf53f4fd16e3fb49c5ac8",
     "xbyak-0d67fd1.tar.gz": "18aa05ac8e4bd5f5cb52c5481b86ba02cac395ad8cdbec6fe5acac94ad546dc8",
