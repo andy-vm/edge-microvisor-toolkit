@@ -109,8 +109,6 @@ sed -i 's/"ENABLE_OV_ONNX_FRONTEND OR ENABLE_OV_PADDLE_FRONTEND OR ENABLE_OV_TF_
 
 sed -i 's/"Enables use of system version of Level Zero" OFF/"Enables use of system version of Level Zero" ON/' cmake/features.cmake
 
-sed -i 's/"ENABLE_INTEL_GPU" OFF)/"ENABLE_INTEL_GPU" ON)/' cmake/features.cmake
-
 # Disable yaml-cpp bundled build in intel_npu plugin
 sed -i '/add_subdirectory(yaml-cpp/s/^/#/' src/plugins/intel_npu/thirdparty/CMakeLists.txt
 sed -i '/target_compile_options(yaml-cpp/s/^/#/' src/plugins/intel_npu/thirdparty/CMakeLists.txt
