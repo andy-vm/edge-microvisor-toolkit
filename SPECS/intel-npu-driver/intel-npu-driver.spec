@@ -147,8 +147,12 @@ sed -i 's/"ENABLE_OV_ONNX_FRONTEND OR ENABLE_OV_PADDLE_FRONTEND OR ENABLE_OV_TF_
 
 sed -i 's/"Enables use of system version of Level Zero" OFF/"Enables use of system version of Level Zero" ON/' cmake/features.cmake
 
-# Fix level-zero-ext include path
-sed -i '/ov_developer_package_export_targets(TARGET level-zero-ext/i target_include_directories(level-zero-ext INTERFACE "${CMAKE_SOURCE_DIR}/../../../../third_party/level-zero-npu-extensions")' src/plugins/intel_npu/src/utils/src/zero/CMakeLists.txt
+# Fix level-zero-ext target: create the target and set include directories before exporting
+sed -i '/ov_developer_package_export_targets(TARGET level-zero-ext/i \
+add_library(level-zero-ext INTERFACE)\
+target_include_directories(level-zero-ext INTERFACE "${CMAKE_SOURCE_DIR}/../../../../third_party/level-zero-npu-extensions")\
+add_library(LevelZero::NPUExt ALIAS level-zero-ext)\
+' src/plugins/intel_npu/src/utils/src/zero/CMakeLists.txt
 
 # Force system TBB usage by commenting out TBB download
 sed -i 's/ov_download_tbb()/#ov_download_tbb()/' src/cmake/ov_parallel.cmake
