@@ -31,12 +31,11 @@ BuildRequires:	libudev-devel
 BuildRequires:	intel-level-zero-devel
 BuildRequires:	openssl-devel
 BuildRequires:	yaml-cpp-devel
-BuildRequires:  pugixml-devel
+BuildRequires: tbb-devel
+BuildRequires: pugixml-devel
 BuildRequires:	snappy-devel
-BuildRequires:  protobuf-compiler
-BuildRequires:  protobuf-devel
-BuildRequires:  ocl-icd-devel
-BuildRequires:  opencl-headers
+BuildRequires: ocl-icd-devel
+BuildRequires: opencl-headers
 BuildRequires:	build-essential git git-lfs python3
 
 Requires:	intel-level-zero
@@ -94,7 +93,7 @@ ls ./build/compiler/src/npu_compiler
 mkdir -p ./build/compiler/src/npu_compiler_openvino
 tar xf %{SOURCE5} -C ./build/compiler/src/npu_compiler_openvino --strip-components=1
 ls ./build/compiler/src/npu_compiler_openvino
-#rm -rf ./build/compiler/src/npu_compiler_openvino/thirdparty/ittapi
+
 cd ./build/compiler/src/npu_compiler_openvino
 
 sed -i 's/set(ENABLE_SYSTEM_LIBS_DEFAULT OFF)/set(ENABLE_SYSTEM_LIBS_DEFAULT ON)/' cmake/features.cmake
