@@ -20,6 +20,11 @@ Source10:       https://github.com/protocolbuffers/protobuf/archive/f0dc78d7e6e3
 source11:       https://github.com/onnx/onnx/archive/b8baa8446686496da4cc8fda09f2b6fe65c2a02c/onnx-b8baa84.tar.gz
 source12:       https://github.com/nlohmann/json/archive/9cca280a4d0ccf0c08f47a99aa71d1b0e52f8d03/json-9cca280.tar.gz
 
+source13:       https://github.com/openvinotoolkit/npu_compiler_elf/archive/9d91134722e70bf52297adaeb221a0be8e408b14/npu_compiler_elf-9d91134.tar.gz
+source14:       https://github.com/google/gtest-parallel/archive/f4d65b555894b301699c7c3c52906f72ea052e83/gtest-parallel-f4d65b5.tar.gz
+source15:       https://github.com/intel/npu-plugin-llvm/archive/f85ae16cf45d451bfeda9c6069f54df1087db48b/npu-plugin-llvm-f85ae16.tar.gz
+source16:       https://github.com/intel/npu-nn-cost-model/archive/bbdb8b778677f46ab7f08df552c8d0d39d586580/npu-nn-cost-model-bbdb8b7.tar.gz
+
 ExclusiveArch:	x86_64
 
 BuildRequires:	cmake
@@ -90,6 +95,28 @@ git -C ./build/compiler/src/npu_compiler lfs install &&
     git -C ./build/compiler/src/npu_compiler/thirdparty/vpucostmodel lfs install &&
     git -C ./build/compiler/src/npu_compiler/thirdparty/vpucostmodel lfs pull
 ls ./build/compiler/src/npu_compiler
+
+cd ./build/compiler/src/npu_compiler
+
+rm -rf thirdparty/elf thirdparty/gtest-parallel thirdparty/llvm-project thirdparty/vpucostmodel
+
+tar xf %{SOURCE13}
+mv npu_compiler_elf-* thirdparty/elf
+
+tar xf %{SOURCE14}
+mv gtest-parallel-* thirdparty/gtest-parallel
+
+tar xf %{SOURCE15}
+mv npu-plugin-llvm-* thirdparty/llvm-project
+
+tar xf %{SOURCE16}
+mv npu-nn-cost-model-* thirdparty/vpucostmodel
+
+cd -
+
+mkdir -p ./build/compiler/src/npu_compiler/build && cd ./build/compiler/src/npu_compiler/build
+cmake -DENABLE_PREBUILT_LLVM_MLIR_LIBS=ON ..
+cd -
 
 mkdir -p ./build/compiler/src/npu_compiler_openvino
 tar xf %{SOURCE5} -C ./build/compiler/src/npu_compiler_openvino --strip-components=1

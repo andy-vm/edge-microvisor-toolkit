@@ -1,5 +1,8 @@
 {
   "Signatures": {
+    "npu-nn-cost-model-bbdb8b7.tar.gz": "80047716cce719a3483d6a8b2589ef0565306476535a47fd06860536ad2e595b",
+    "npu-plugin-llvm-f85ae16.tar.gz": "dc1b8013f38669c7a04908eb9c0c779b3750c31336d624dbf5931c21aadf8509",
+    "gtest-parallel-f4d65b5.tar.gz": "0c088468090055d72d87c73a946220a94db3d53ecf943b799ad4c09d7eb8801f",
     "onnx-b8baa84.tar.gz": "b741da9ecd0021df2d5bcd5ee73c5b9d88f8d870df7b489fa4b15ef6951e9a13",
     "json-9cca280.tar.gz": "0dbc5e40a01ff142e7e68c03e85247a4dcede2f592d12d3677dee3664d17975a",
     "protobuf-f0dc78d.tar.gz": "d594b561fb41bf243233d8f411c7f2b7d913e5c9c1be4ca439baf7e48384c893",
