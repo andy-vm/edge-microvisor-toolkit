@@ -2,8 +2,8 @@
 
 Name:    tbb
 Summary: The Threading Building Blocks library abstracts low-level threading details
-Version: 2021.13.0
-Release: 2%{?dist}
+Version: 2021.13.1
+Release: 1%{?dist}
 License: Apache-2.0 AND BSD-3-Clause
 URL:     http://threadingbuildingblocks.org/
 
@@ -60,18 +60,6 @@ Header files and shared object symlinks for the Threading Building
 Blocks (TBB) C++ libraries.
 
 
-# %package doc
-# Summary: The Threading Building Blocks documentation
-# %ifarch %{ix86}
-# # https://bugzilla.redhat.com/show_bug.cgi?id=2174300
-# Conflicts: %{name}-doc.x86_64
-# %endif
-# 
-# %description doc
-# PDF documentation for the user of the Threading Building Block (TBB)
-# C++ library.
-
-
 %package -n python3-%{name}
 Summary: Python 3 TBB module
 Requires: %{name}%{?_isa} = %{version}-%{release}
@@ -113,10 +101,6 @@ cd python
 %pyproject_wheel
 cd -
 
-# Build documentation
-# export BUILD_TYPE=oneapi
-# sphinx-build doc/GSG getting-started
-# sphinx-build doc/main html
 
 %install
 %cmake_install
@@ -165,9 +149,6 @@ ctest --output-on-failure --force-new-ctest-process
 %{_libdir}/cmake/TBB/
 %{_libdir}/pkgconfig/*.pc
 
-# %files doc
-# %doc getting-started html
-
 %files -n python3-%{name}
 %doc python/README.md
 %{python3_sitearch}/TBB*
@@ -175,5 +156,5 @@ ctest --output-on-failure --force-new-ctest-process
 %{python3_sitearch}/__pycache__/TBB*
 
 %changelog
-* Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2021.13.0-2
+* Sat Jul 20 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2021.13.1-1
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
