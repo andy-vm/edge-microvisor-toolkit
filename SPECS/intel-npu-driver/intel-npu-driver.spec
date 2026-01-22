@@ -113,6 +113,9 @@ sed -i 's/"Enables use of system version of Level Zero" OFF/"Enables use of syst
 # Force system TBB usage by commenting out TBB download
 sed -i 's/ov_download_tbb()/#ov_download_tbb()/' src/cmake/ov_parallel.cmake
 
+# Disable Python bindings by removing the subdirectory
+sed -i '/add_subdirectory(python)/s/^/#/' src/bindings/CMakeLists.txt
+
 # Disable yaml-cpp bundled build in intel_npu plugin
 sed -i '/add_subdirectory(yaml-cpp/s/^/#/' src/plugins/intel_npu/thirdparty/CMakeLists.txt
 sed -i '/target_compile_options(yaml-cpp/s/^/#/' src/plugins/intel_npu/thirdparty/CMakeLists.txt
