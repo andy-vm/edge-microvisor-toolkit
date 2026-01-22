@@ -152,13 +152,13 @@ sed -i '/add_subdirectory(yaml-cpp/s/^/#/' src/plugins/intel_npu/thirdparty/CMak
 sed -i '/target_compile_options(yaml-cpp/s/^/#/' src/plugins/intel_npu/thirdparty/CMakeLists.txt
 
 # thirdparty deps
-rm -rf thirdparty/gtest thirdparty/gflags/gflags thirdparty/level-zero/level_zero thirdparty/itt_collector \
+rm -rf thirdparty/gtest/gtest thirdparty/gflags/gflags thirdparty/level-zero/level_zero thirdparty/itt_collector \
    thirdparty/pugixml thirdparty/telemetry thirdparty/flatbuffers/flatbuffers thirdparty/xbyak \
    thirdparty/protobuf/protobuf thirdparty/onnx/onnx thirdparty/json/nlohmann_json
 
 tar xf %{SOURCE17}
-mv googletest-* thirdparty/gtest
-ls thirdparty/gtest
+mv googletest-* thirdparty/gtest/gtest
+ls thirdparty/gtest/gtest
 
 tar xf %{SOURCE6}
 mv level-zero-* thirdparty/level_zero/level_zero
