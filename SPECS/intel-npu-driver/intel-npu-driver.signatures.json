@@ -1,5 +1,6 @@
 {
   "Signatures": {
+    "flatbuffers-595bf00.tar.gz": "987300083ec1f1b095d5596ef8fb657ba46c45d786bc866a5e9029d7590a5e48",
     "level-zero-7ae9d18.tar.gz": "2db49e5512182cfad4e2b0e7f905eda8fccb6e5b11f9fc9110b8a4057bdc8c68",
     "npu_compiler-a1ae54e.tar.gz": "4555ead2c6305cef2ff7ef5289f3a03805d4ccc084b09988713123f1ee9b27fb",
     "openvino-5fb69ea.tar.gz": "38f562944536f4d29018a386804c2043d5562f493c52eb574abc00294bb6cd8e",

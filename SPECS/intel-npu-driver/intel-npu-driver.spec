@@ -13,6 +13,7 @@ Source3:        https://github.com/openvinotoolkit/openvino/archive/7a975177ff43
 Source4:        https://github.com/openvinotoolkit/npu_compiler/archive/a1ae54e94faea6f35566ef4ed03ee98156808306/npu_compiler-a1ae54e.tar.gz
 Source5:        https://github.com/openvinotoolkit/openvino/archive/5fb69ea158126752aa9d8aa5ee4d6f65a5b409b5/openvino-5fb69ea.tar.gz
 Source6:        https://github.com/oneapi-src/level-zero/archive/7ae9d18f888dd4a9960e230b138ecd915ea187ac/level-zero-7ae9d18.tar.gz
+Source7:        https://github.com/google/flatbuffers/archive/595bf0007ab1929570c7671f091313c8fc20644e/flatbuffers-595bf00.tar.gz
 
 ExclusiveArch:	x86_64
 
@@ -29,7 +30,6 @@ BuildRequires:  pugixml-devel
 BuildRequires:	snappy-devel
 BuildRequires:  protobuf-compiler
 BuildRequires:  protobuf-devel
-BuildRequires:  flatbuffers
 BuildRequires:	build-essential git git-lfs python3
 
 Requires:	intel-level-zero
@@ -103,10 +103,14 @@ sed -i 's/"ENABLE_OV_ONNX_FRONTEND OR ENABLE_OV_PADDLE_FRONTEND OR ENABLE_OV_TF_
 
 # thirdparty deps
 rm -rf thirdparty/gtest thirdparty/gflags thirdparty/level-zero/level_zero third_party/itt_collector \
-   thirdparty/pugixml third_party/telemetry
-#tar xf %{SOURCE6}
-#mkdir -p third_party/level_zero/level_zero
-#mv level-zero-* third_party/level_zero/level_zero
+   thirdparty/pugixml third_party/telemetry thirdparty/flatbuffers/flatbuffers
+tar xf %{SOURCE6}
+mkdir -p third_party/level_zero/level_zero
+mv level-zero-* third_party/level_zero/level_zero
+tar xf %{SOURCE7}
+mkdir -p third_party/flatbuffers/flatbuffers
+mv flatbuffers-* third_party/flatbuffers/flatbuffers
+ls thirdparty/flatbuffers/flatbuffers
 cd -
 
 mkdir -p ./build/compiler/src/npu_compiler_openvino/build && cd ./build/compiler/src/npu_compiler_openvino/build
