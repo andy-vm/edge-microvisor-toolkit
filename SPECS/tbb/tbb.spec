@@ -114,9 +114,9 @@ cd python
 cd -
 
 # Build documentation
-export BUILD_TYPE=oneapi
-sphinx-build doc/GSG getting-started
-sphinx-build doc/main html
+# export BUILD_TYPE=oneapi
+# sphinx-build doc/GSG getting-started
+# sphinx-build doc/main html
 
 %install
 %cmake_install
