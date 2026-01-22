@@ -107,7 +107,7 @@ export PYTHONPATH=$(sed "s,%{_prefix},$PWD/%{_vpath_builddir}/python/build," <<<
 
 # The python package is not built the Fedora way.  Do it over.
 unset PYTHONPATH
-export LD_LIBRARY_PATH=$(ls -1d $PWD/%{_vpath_builddir}/*relwithdebinfo)
+export LD_LIBRARY_PATH=$(ls -1d $PWD/*relwithdebinfo)
 export LDFLAGS="-L $LD_LIBRARY_PATH %{build_ldflags}"
 cd python
 %pyproject_wheel
