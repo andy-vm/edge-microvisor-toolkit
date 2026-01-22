@@ -101,6 +101,13 @@ ls ./build/compiler/src/npu_compiler
 
 cd ./build/compiler/src/npu_compiler
 
+# Patch compiler_commit_hash.cmake to set default hash instead of failing when git is not available
+sed -i '/if (NOT \${ERROR_CODE} EQUAL 0)/,/endif()/c\
+if (NOT ${ERROR_CODE} EQUAL 0)\
+    set(CURRENT_COMMIT_HASH "a1ae54e94faea6f35566ef4ed03ee98156808306")\
+    message(WARNING "Failed to capture compiler git commit. Using default hash: ${CURRENT_COMMIT_HASH}")\
+endif()' cmake/compiler_commit_hash.cmake
+
 rm -rf thirdparty/elf thirdparty/gtest-parallel thirdparty/llvm-project thirdparty/vpucostmodel
 
 tar xf %{SOURCE13}
