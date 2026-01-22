@@ -22,6 +22,7 @@ BuildRequires: hwloc
 BuildRequires: hwloc-devel
 BuildRequires: make
 BuildRequires: python3-devel
+BuildRequires: python3-pip
 BuildRequires: %{py3_dist setuptools}
 BuildRequires: %{py3_dist sphinx}
 BuildRequires: %{py3_dist sphinx-rtd-theme}
