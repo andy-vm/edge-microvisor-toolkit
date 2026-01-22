@@ -14,6 +14,8 @@ Source4:        https://github.com/openvinotoolkit/npu_compiler/archive/a1ae54e9
 Source5:        https://github.com/openvinotoolkit/openvino/archive/5fb69ea158126752aa9d8aa5ee4d6f65a5b409b5/openvino-5fb69ea.tar.gz
 Source6:        https://github.com/oneapi-src/level-zero/archive/7ae9d18f888dd4a9960e230b138ecd915ea187ac/level-zero-7ae9d18.tar.gz
 Source7:        https://github.com/google/flatbuffers/archive/595bf0007ab1929570c7671f091313c8fc20644e/flatbuffers-595bf00.tar.gz
+Source8:        https://github.com/gflags/gflags/archive/e171aa2d15ed9eb17054558e0b3a6a413bb01067/gflags-e171aa2.tar.gz
+Source9:        https://github.com/herumi/xbyak/archive/0d67fd1530016b7c56f3cd74b3fca920f4c3e2b4/xbyak-0d67fd1.tar.gz
 
 ExclusiveArch:	x86_64
 
@@ -109,19 +111,24 @@ sed -i 's/"ENABLE_INTEL_GPU" OFF)/"ENABLE_INTEL_GPU" ON)/' cmake/features.cmake
 
 # thirdparty deps
 rm -rf thirdparty/gtest thirdparty/gflags/gflags thirdparty/level-zero/level_zero third_party/itt_collector \
-   thirdparty/pugixml thirdparty/telemetry thirdparty/flatbuffers/flatbuffers
+   thirdparty/pugixml thirdparty/telemetry thirdparty/flatbuffers/flatbuffers thirdparty/xbyak
 tar xf %{SOURCE6}
-#mkdir -p thirdparty/level_zero/level_zero
 mv level-zero-* thirdparty/level_zero/level_zero
 ls thirdparty/level_zero/level_zero
 tar xf %{SOURCE7}
-#mkdir -p thirdparty/flatbuffers/flatbuffers
 mv flatbuffers-* thirdparty/flatbuffers/flatbuffers
 ls thirdparty/flatbuffers/flatbuffers
+tar xf %{SOURCE8}
+mv gflags-* thirdparty/gflags/gflags
+ls thirdparty/gflags/gflags
+tar xf %{SOURCE9}
+mv xbyak-* thirdparty/xbyak
+ls thirdparty/xbyak
 cd -
 
 mkdir -p ./build/compiler/src/npu_compiler_openvino/build && cd ./build/compiler/src/npu_compiler_openvino/build
 cmake -DENABLE_SYSTEM_PUGIXML=ON -DENABLE_INTEL_GPU=OFF -DENABLE_INTEL_CPU=OFF -DENABLE_SAMPLES=OFF \
+   -DENABLE_SYSTEM_LIBS_DEFAULT=ON -DENABLE_PROFILING_ITT=OFF -DENABLE_SYSTEM_FLATBUFFERS=OFF \
    -DENABLE_SYSTEM_LEVEL_ZERO=ON -DENABLE_SYSTEM_SNAPPY=ON -DENABLE_SYSTEM_PROTOBUF=ON ..
 cd -
 
