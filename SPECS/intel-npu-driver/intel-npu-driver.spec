@@ -111,6 +111,9 @@ sed -i 's/"Enables use of system version of Level Zero" OFF/"Enables use of syst
 
 sed -i 's/"ENABLE_INTEL_GPU" OFF)/"ENABLE_INTEL_GPU" ON)/' cmake/features.cmake
 
+# Disable yaml-cpp bundled build in intel_npu plugin
+sed -i '/add_subdirectory(yaml-cpp/s/^/#/' src/plugins/intel_npu/thirdparty/CMakeLists.txt
+
 # thirdparty deps
 rm -rf thirdparty/gtest thirdparty/gflags/gflags thirdparty/level-zero/level_zero thirdparty/itt_collector \
    thirdparty/pugixml thirdparty/telemetry thirdparty/flatbuffers/flatbuffers thirdparty/xbyak \
