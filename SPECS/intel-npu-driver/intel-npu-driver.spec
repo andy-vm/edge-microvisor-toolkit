@@ -109,6 +109,9 @@ sed -i 's/"ENABLE_OV_ONNX_FRONTEND OR ENABLE_OV_PADDLE_FRONTEND OR ENABLE_OV_TF_
 
 sed -i 's/"Enables use of system version of Level Zero" OFF/"Enables use of system version of Level Zero" ON/' cmake/features.cmake
 
+# Force system TBB usage by commenting out TBB download
+sed -i 's/ov_download_tbb()/#ov_download_tbb()/' src/cmake/ov_parallel.cmake
+
 # Disable yaml-cpp bundled build in intel_npu plugin
 sed -i '/add_subdirectory(yaml-cpp/s/^/#/' src/plugins/intel_npu/thirdparty/CMakeLists.txt
 sed -i '/target_compile_options(yaml-cpp/s/^/#/' src/plugins/intel_npu/thirdparty/CMakeLists.txt
@@ -149,11 +152,14 @@ cmake -DENABLE_SYSTEM_PUGIXML=ON -DENABLE_INTEL_GPU=OFF -DENABLE_INTEL_CPU=OFF -
 cd -
 
 %build
+# Set TBB_DIR to help CMake find system TBB
+export TBB_DIR=%{_libdir}/cmake/TBB
+
 cmake \
 	-B build -S . \
 	-DENABLE_VALIDATION_BUILD=OFF \
 	-DENABLE_NPU_COMPILER_BUILD=ON \
-	-DOPENVINO_CMAKE_ARGS="-DENABLE_SYSTEM_TBB=ON;-DENABLE_PYTHON=OFF;-DENABLE_JS=OFF"
+	-DOPENVINO_CMAKE_ARGS="-DENABLE_SYSTEM_TBB=ON;-DENABLE_PYTHON=OFF;-DENABLE_JS=OFF;-DENABLE_SYSTEM_PUGIXML=ON;-DENABLE_INTEL_GPU=OFF;-DENABLE_INTEL_CPU=OFF;-DENABLE_SAMPLES=OFF;-DENABLE_SYSTEM_LIBS_DEFAULT=ON;-DENABLE_PROFILING_ITT=OFF;-DENABLE_SYSTEM_FLATBUFFERS=OFF;-DENABLE_SYSTEM_LEVEL_ZERO=ON;-DENABLE_SYSTEM_SNAPPY=ON;-DENABLE_SYSTEM_PROTOBUF=OFF;-DENABLE_INTEL_GPU_COMMON=OFF;-DENABLE_JS=OFF;-DTBB_DIR=%{_libdir}/cmake/TBB"
 
 cmake --build build
 
