@@ -1,5 +1,6 @@
 {
   "Signatures": {
+    "googletest-99760ac.tar.gz": "a2be20c53eade3fcea3f4258321c68cfb32af4835d97110c6aecbf67b10afe62",
     "npu-nn-cost-model-bbdb8b7.tar.gz": "80047716cce719a3483d6a8b2589ef0565306476535a47fd06860536ad2e595b",
     "npu-plugin-llvm-f85ae16.tar.gz": "dc1b8013f38669c7a04908eb9c0c779b3750c31336d624dbf5931c21aadf8509",
     "gtest-parallel-f4d65b5.tar.gz": "0c088468090055d72d87c73a946220a94db3d53ecf943b799ad4c09d7eb8801f",

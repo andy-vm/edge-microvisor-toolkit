@@ -25,6 +25,8 @@ source14:       https://github.com/google/gtest-parallel/archive/f4d65b555894b30
 source15:       https://github.com/intel/npu-plugin-llvm/archive/f85ae16cf45d451bfeda9c6069f54df1087db48b/npu-plugin-llvm-f85ae16.tar.gz
 source16:       https://github.com/intel/npu-nn-cost-model/archive/bbdb8b778677f46ab7f08df552c8d0d39d586580/npu-nn-cost-model-bbdb8b7.tar.gz
 
+source17:       https://github.com/openvinotoolkit/googletest/archive/99760ac1776430f3df65947992bf4e8ebc0d7660/googletest-99760ac.tar.gz
+
 ExclusiveArch:	x86_64
 
 BuildRequires:	cmake
@@ -41,6 +43,7 @@ BuildRequires: pugixml-devel
 BuildRequires:	snappy-devel
 BuildRequires: ocl-icd-devel
 BuildRequires: opencl-headers
+BuildRequires: protobuf-devel
 BuildRequires:	build-essential git git-lfs python3
 
 Requires:	intel-level-zero
@@ -152,6 +155,10 @@ sed -i '/target_compile_options(yaml-cpp/s/^/#/' src/plugins/intel_npu/thirdpart
 rm -rf thirdparty/gtest thirdparty/gflags/gflags thirdparty/level-zero/level_zero thirdparty/itt_collector \
    thirdparty/pugixml thirdparty/telemetry thirdparty/flatbuffers/flatbuffers thirdparty/xbyak \
    thirdparty/protobuf/protobuf thirdparty/onnx/onnx thirdparty/json/nlohmann_json
+
+tar xf %{SOURCE17}
+mv googletest-* thirdparty/gtest
+ls thirdparty/gtest
 
 tar xf %{SOURCE6}
 mv level-zero-* thirdparty/level_zero/level_zero
