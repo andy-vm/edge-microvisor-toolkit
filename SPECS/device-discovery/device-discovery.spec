@@ -50,6 +50,12 @@ install -Dp -m0644 %{SOURCE1} %{buildroot}%{_unitdir}/device-discovery.service
 %{_unitdir}/device-discovery.service
 
 %changelog
+* Tue Jan 27 2026 Andy <andy.peng@intel.com> - 1:0.0.4-1
+- Update version to fix CVE
+- CVE-2025-47913
+- CVE-2025-47914
+- CVE-2025-58181
+
 * Fri Oct 3 2025 Lee Chee Yang <chee.yang.lee@intel.com> - 1:0.0.3-3
 - build with golang < 1.25
 
