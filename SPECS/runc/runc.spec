@@ -3,7 +3,7 @@ Summary:        CLI tool for spawning and running containers per OCI spec.
 Name:           runc
 # update "commit_hash" above when upgrading version
 Version:        1.2.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 License:        ASL 2.0
 Vendor:         Microsoft Corporation
 Distribution:   Azure Linux
@@ -12,7 +12,7 @@ URL:            https://github.com/opencontainers/runc
 Source0:        https://github.com/opencontainers/runc/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 BuildRequires:  git
 BuildRequires:  go-md2man
-BuildRequires:  golang
+BuildRequires:  golang < 1.24
 BuildRequires:  libseccomp-devel
 BuildRequires:  make
 Requires:       glibc
